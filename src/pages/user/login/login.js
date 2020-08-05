@@ -17,7 +17,7 @@ const LoginPage = () => {
     const submitHandler = async (e)=>{
         e.preventDefault();
         const data = {username, password}
-        console.log(data)
+       
         const promise = await fetch('http://localhost:4000/login',{
             method: 'POST',
             headers: {

@@ -9,26 +9,32 @@ class App extends React.Component {
     super(props)
     this.state = {
       isLoggin: false,
-      loginIn: this.loginIn
+      loginIn: this.loginIn,
+      color: '',
+      setDetailsBackground: this.setDetailsBackground
+    
     }
   }
-  // static contextType = MyContext;
 
-  loginIn = (isLoggin) => {
+  loginIn = () => {
     this.setState({isLoggin:true})
   }
+
+  setDetailsBackground= (c)=>{
+    this.setState({color:c})
+  }
+  
   render () {
     
-    // const {isLoggin, loginIn} = this.context;
-    // console.log(isLoggin)
-    return (
-      <MyContext.Provider value={this.state}>
-
+      return (
+     
         <div className="App">
-            <Navigation isLoggin={this.state.isLoggin}/>
+           <MyContext.Provider value={{...this.state}}>
+              <Navigation />
+            </MyContext.Provider>
         </div>
        
-      </MyContext.Provider>
+      
       
     );
   }

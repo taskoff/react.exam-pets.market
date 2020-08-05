@@ -1,6 +1,7 @@
 import React from 'react';
 import Pic from '../image/image';
 import styles from './gallery.module.css';
+import BacgroundContext from '../../context/details-background';
 
 class ImgGallery extends React.Component {
     constructor(props) {
@@ -8,9 +9,12 @@ class ImgGallery extends React.Component {
 
         this.state ={
             images: [
-        ]
+            ],
+
         }
     }
+    static contextType = BacgroundContext;
+
     componentDidMount(){
         this.getImages()
     }
@@ -33,9 +37,11 @@ class ImgGallery extends React.Component {
     }
     render() {
         return (
-            <div className={styles.gallery}>
-                {this.renderImages()}
-            </div>
+            
+                <div className={styles.gallery}>
+                    {this.renderImages()}
+                </div>
+           
         )
     }
 }

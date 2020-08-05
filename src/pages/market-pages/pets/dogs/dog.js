@@ -19,7 +19,7 @@ class Dog extends React.Component {
                     <div >
                         <TitleWithImg path1='/images/dog6.png' path2='/images/dog.png' type="img" title="Dogs Page"/>
                     </div>
-                <ImgGallery pet={'dog'} type="gallery"/>
+                    <ImgGallery pet={'dog'} type="gallery"/>
                 </div>
                 {/* <Footer /> */}
             </div>

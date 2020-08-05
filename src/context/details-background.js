@@ -1,8 +1,9 @@
 import React from 'react';
 
 const BacgroundContext = React.createContext({
-    detailsBackground: '',
-    setDetailsBackground:function (b){this.detailsBackground = b} 
+    color: '',
+    setDetailsBackground: ()=>{
+    }
 });
 
 export default BacgroundContext;
