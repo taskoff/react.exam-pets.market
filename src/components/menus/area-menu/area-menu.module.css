@@ -1,0 +1,15 @@
+.second-menu {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+
+
+.area-menu {
+    display: flex;
+    justify-content: flex-end;
+    min-height: 200px;
+    justify-content: center;
+    margin-top: 50px;
+}

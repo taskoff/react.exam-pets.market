@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Navigation from './navigation/navi';
+import Footer from './components/footer/footer';
+import MyContext from '../src/context/context';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoggin: false,
+      loginIn: this.loginIn
+    }
+  }
+  // static contextType = MyContext;
+
+  loginIn = (isLoggin) => {
+    this.setState({isLoggin:true})
+  }
+  render () {
+    
+    // const {isLoggin, loginIn} = this.context;
+    // console.log(isLoggin)
+    return (
+      <MyContext.Provider value={this.state}>
+
+        <div className="App">
+            <Navigation isLoggin={this.state.isLoggin}/>
+        </div>
+       
+      </MyContext.Provider>
+      
+    );
+  }
 }
 
 export default App;

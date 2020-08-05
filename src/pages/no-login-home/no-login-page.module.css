@@ -1,0 +1,13 @@
+.container {
+    padding: 50px 0;
+}
+
+.home-text {
+    text-align: center;
+    font-size: 2em;
+}
+
+.action {
+    margin: 0 10px;
+    color: blue;
+}

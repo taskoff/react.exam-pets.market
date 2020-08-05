@@ -1,0 +1,57 @@
+.form-box {
+    max-width: 50%;
+    margin: auto;
+    text-align: center;
+    box-shadow: 0 0 5px black;
+    padding: 20px 0;
+    /* background-color: rgb(196,98,16); */
+    /* background: linear-gradient(0deg, rgba(252,252,252,1) -60%, rgba(196,98,16,1) 100%); */
+    background: linear-gradient(0deg, rgba(227,183,146,1) 45%, rgba(196,98,16,1) 100%);
+    color: rgb(60,60,60);
+}
+form {
+    text-align: end;
+    margin-right: 150px;
+    margin-top: 50px;
+}
+.form-textarea-box,
+.form-select-box {
+    font-size: 1.5em;
+    margin-left: 20px;
+    padding-right: 20px;
+}
+.form-select {
+    min-width: 400px;
+    font-size: 0.8em;
+    margin-left: 10px;
+    text-align-last:center;
+    font-family: 'Ranchers', cursive;
+    color: #404040;
+}
+.form-textarea-box {
+    display: flex;
+    justify-content: flex-end;
+}
+.form-textarea>label {
+    margin-right: 10px;
+}
+.form-label {
+    width: 100px;
+}
+textarea {
+    width: 400px;
+    height: 100px;
+    margin-left: 10px;
+}
+.price-input {
+    width: 50px
+}
+.submit-btn-box {
+    padding: 20px 0;
+    text-align: center;
+}
+.submit-btn {
+    padding: 10px 30px;
+    font-size: 1em;
+    cursor: pointer;
+}

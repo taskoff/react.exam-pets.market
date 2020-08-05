@@ -1,0 +1,23 @@
+.notice-container {
+    display: flex;
+    max-width: 60%;
+    margin: auto;
+}
+
+.details-box {
+    margin-left: 20px;
+    font-size: 1.5em;
+}
+
+.text {
+    padding: 10px 0;
+}
+.dog {
+    background: linear-gradient(0deg, rgba(252,252,252,1) 0%, rgba(196,98,16,1) 100%);
+    min-height: 100vh;
+}
+.cat {
+    min-height: 100vh;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(176,191,26,1) 100%);
+
+}

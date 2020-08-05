@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-right: 60px;
+}
+.portrait-img {
+    max-width: 70px;
+    height: auto;
+    padding: 0 40px;
+}
+.img {
+    width: auto;
+    height: 90px;
+    padding: 20px 40px;
+}

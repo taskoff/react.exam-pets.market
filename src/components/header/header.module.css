@@ -1,0 +1,13 @@
+.site-header {
+    display: flex;
+    justify-content:  center;
+}
+.link {
+    padding: 10px 30px;
+    text-decoration: none;
+    font-size: 1.8em;
+    color: #404040;
+}
+.link:first-child {
+    border-right: 2px solid black;
+}

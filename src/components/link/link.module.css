@@ -1,0 +1,51 @@
+
+.link {
+    min-width: 160px;
+    text-decoration: none;
+    font-size: 1.8em;
+    color: white;
+    padding: 5px 0;
+    text-shadow: 0 0 1px black ;
+    text-align: center;
+    border: 2px solid white;
+
+}
+.link:hover {
+    opacity: 0.8;
+}
+
+.red {
+    background-color: rgb(196,98,16);
+    
+}
+.blue {
+    background-color: rgb(114,160,193);
+   
+}
+.green {
+    background-color: rgba(176,191,26,1);
+    
+}
+.yellow {
+    background-color: rgb(255,191,0);
+   
+}
+.dark-green {
+    background-color: rgb(59,122,87);
+}
+.cream {
+    color: black;
+    background-color: none;
+    /* border: 2px solid black; */
+    box-shadow: 0 0 5px black;
+    margin: 0 3px;
+    border: none;
+    border-radius: 2px;
+}
+.cream:hover {
+    background-color: rgba(255,255,25, 0.3);
+}
+.is-active {
+    /* border-bottom: none; */
+    box-shadow: 0 0 10px black;
+}
