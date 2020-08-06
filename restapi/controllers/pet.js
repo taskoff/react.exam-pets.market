@@ -1,4 +1,4 @@
-const Play = require('../models/pet');
+const Pet = require('../models/pet');
 const {verifyToken} = require('./auth');
 
 const savePet  = async (req, res)=>{
@@ -9,7 +9,7 @@ const savePet  = async (req, res)=>{
         price
     } = req.body;
     const obj = verifyToken(req);
-    const pet = await new Play({type, description, imageUrl, price, createdAt: new Date()} ).save();
+    const pet = await new Pet({type, description, imageUrl, price, createdAt: new Date()} ).save();
     return pet;
 }
 

@@ -8,8 +8,8 @@ const {savePet, getOnePlay, getOnePlayWithFriends, sortPlays, getAllPlays} = req
 
 
     router.post('/create',async (req, res)=>{
-       await savePet(req, res);
-       res.redirect('/');
+       const pet = await savePet(req, res);
+        res.send(pet)
     })
     router.get('/details/:id',getUserStatus ,  async (req, res)=>{
         if (req.isLoggedIn) {

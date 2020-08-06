@@ -9,7 +9,8 @@ const generateToken = (data)=>{
 }
 
 const verifyToken = (req, res, next)=>{
-    const token = req.cookies['uinfo']
+    const token = req.headers['authorization']
+    console.log(req.headers)
     const obj = jwt.verify(token, config.development.privateKey);
     return obj;
 }
