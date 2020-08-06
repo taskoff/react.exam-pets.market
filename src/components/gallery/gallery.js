@@ -22,6 +22,7 @@ class ImgGallery extends React.Component {
         const {pet} = this.props
         const promise = await fetch(`http://localhost:4000/${pet}`)
         const images = await promise.json()
+        console.log(images)
         this.setState({
           images
         })
@@ -32,7 +33,7 @@ class ImgGallery extends React.Component {
         const {type, pet} = this.props
         const {images} = this.state;
         return images.map(i =>{
-            return <Pic key={i.id} path={i.path} type={type} pet={pet} />
+            return <Pic key={i._id} path={i.imageUrl} type={type} pet={pet} />
         })
     }
     render() {

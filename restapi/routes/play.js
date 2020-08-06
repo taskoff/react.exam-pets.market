@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Play = require('../models/pet');
+const Pet = require('../models/pet');
 const {getUserStatus, verifyToken} = require('../controllers/auth');
 const {savePet, getOnePlay, getOnePlayWithFriends, sortPlays, getAllPlays} = require('../controllers/pet');
 
@@ -11,17 +11,17 @@ const {savePet, getOnePlay, getOnePlayWithFriends, sortPlays, getAllPlays} = req
        const pet = await savePet(req, res);
         res.send(pet)
     })
-    router.get('/details/:id',getUserStatus ,  async (req, res)=>{
+    router.get('/details/:id' ,  async (req, res)=>{
         if (req.isLoggedIn) {
             
             const id = req.params.id;
             const obj = verifyToken(req, res)
             const play = await getOnePlayWithFriends(id)
-            console.log(play)
+           
             const creator = play.usersLiked[0];
             console.log(creator)
             const likers = play.usersLiked.slice(1)
-            console.log(likers)
+            
            
             const friend = likers.find(e=>e.username === obj.username)
                 res.render('play/details', {
@@ -35,7 +35,7 @@ const {savePet, getOnePlay, getOnePlayWithFriends, sortPlays, getAllPlays} = req
 
     router.get('/delete/:id', async (req, res)=>{
         const id = req.params.id;
-        await Play.deleteOne({_id:id});
+        await Pet.deleteOne({_id:id});
         // TODO for user
         res.redirect('/');
     })
@@ -57,7 +57,7 @@ const {savePet, getOnePlay, getOnePlayWithFriends, sortPlays, getAllPlays} = req
     router.post('/edit/:id',async (req, res)=>{
         const id = req.params.id;
         const {title, description, imageUrl, isPublic} = req.body;
-        const play = await Play.findByIdAndUpdate(id, { "$set": {title, description, imageUrl, isPublic: isPublic === 'on'} });
+        const play = await Pet.findByIdAndUpdate(id, { "$set": {title, description, imageUrl, isPublic: isPublic === 'on'} });
         
         res.redirect('/');
      })
@@ -65,7 +65,7 @@ const {savePet, getOnePlay, getOnePlayWithFriends, sortPlays, getAllPlays} = req
      router.get('/like/:id',async (req, res)=>{
         const id = req.params.id;
         const obj = await verifyToken(req);
-        const play =  await Play.findByIdAndUpdate(id, { $addToSet:{usersLiked: [obj.userId]} });
+        const play =  await Pet.findByIdAndUpdate(id, { $addToSet:{usersLiked: [obj.userId]} });
         // TODO for user
         res.redirect(`/`);
      })

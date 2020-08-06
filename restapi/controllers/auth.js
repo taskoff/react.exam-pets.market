@@ -36,7 +36,7 @@ const registerUser = async (req, res)=> {
               console.log(2)
 
                 const user = await new User({username, password:hash}).save();
-                // console.log(user)
+               
                 const userId = user._id;
                 const token = generateToken({username, userId})
                 console.log(token)
@@ -44,9 +44,7 @@ const registerUser = async (req, res)=> {
                
                
             } catch(error){
-                // res.render('user/register',{
-                //     error: 'Wrong format or length'
-                // });
+               
                 return
             }
             
@@ -61,7 +59,7 @@ const loginUser = async (req, res)=>{
     console.log(username, password)
     const user = await User.findOne({username});
     const status = bcrypt.compare(password, user.password);
-    console.log(status)
+    
     if (status) {
         const userId = user._id
         const token = generateToken({ username, userId })
