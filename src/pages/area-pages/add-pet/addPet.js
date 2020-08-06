@@ -7,6 +7,8 @@ import Header from '../../../components/header/header';
 import AreaMenu from '../../../components/menus/area-menu/area-menu';
 import styles from './addPet.module.css';
 import getCookie from '../../../untils/coockie';
+import MyContext from '../../../context/context';
+
 
 const AddPet = ()=> {
     // const context = useContext(MyContext); 
@@ -15,13 +17,14 @@ const AddPet = ()=> {
     const [type, setType] = useState('');
     const [description, setDescription] = useState('');
     const history = useHistory();
-
+    const context = useContext(MyContext);
 
         const submitHandler = async (e)=>{
             e.preventDefault()
             console.log(price, description, imageUrl, type)
             if(price && description && imageUrl && type){
-                const data = {price, description, imageUrl, type};
+                console.log(context.id, context.username)
+                const data = {price, description, imageUrl, type, creator: context.username};
 
                 try {
     

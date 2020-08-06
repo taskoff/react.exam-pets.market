@@ -8,6 +8,8 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      username: '',
+      id: '',
       isLoggin: false,
       loginIn: this.loginIn,
       color: '',
@@ -16,8 +18,8 @@ class App extends React.Component {
     }
   }
 
-  loginIn = () => {
-    this.setState({isLoggin:true})
+  loginIn = (u, i) => {
+    this.setState({isLoggin:true, username:u, id:i})
   }
 
   setDetailsBackground= (c)=>{

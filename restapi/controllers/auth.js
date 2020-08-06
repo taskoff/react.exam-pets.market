@@ -36,12 +36,12 @@ const registerUser = async (req, res)=> {
               console.log(2)
 
                 const user = await new User({username, password:hash}).save();
-                console.log(user)
+                // console.log(user)
                 const userId = user._id;
                 const token = generateToken({username, userId})
                 console.log(token)
                 res.header("Authorization", token).send(user);
-                // res.redirect('/')
+               
                
             } catch(error){
                 // res.render('user/register',{

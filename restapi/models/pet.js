@@ -25,10 +25,9 @@ const petSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    users: [{
-        type: 'ObjectId',
-        ref: 'User'
-    }]
+    creator: {
+       type:String
+    }
     
 })
 

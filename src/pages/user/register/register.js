@@ -28,9 +28,11 @@ const RegisterPage = () => {
                  },
                  body: JSON.stringify(data) ,
                })
+               const res = await promise.json()
+               console.log(res)
                const authToken = promise.headers.get('Authorization');
                document.cookie = `x-auth-token=${authToken}`;
-               context.loginIn();
+               context.loginIn(res.username, res._id);
                history.push('/')
     
             } catch (e){
