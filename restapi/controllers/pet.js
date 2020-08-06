@@ -6,10 +6,11 @@ const savePet  = async (req, res)=>{
         type,
         description,
         imageUrl,
-        price
+        price,
+        creator
     } = req.body;
     const obj = verifyToken(req);
-    const pet = await new Pet({type, description, imageUrl, price, createdAt: new Date()} ).save();
+    const pet = await new Pet({type, description, imageUrl, price, createdAt: new Date(), creator} ).save();
     return pet;
 }
 

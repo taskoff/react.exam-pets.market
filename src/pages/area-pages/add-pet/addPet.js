@@ -21,11 +21,12 @@ const AddPet = ()=> {
 
         const submitHandler = async (e)=>{
             e.preventDefault()
-            console.log(price, description, imageUrl, type)
+            const creator = context.username
             if(price && description && imageUrl && type){
                 console.log(context.id, context.username)
-                const data = {price, description, imageUrl, type, creator: context.username};
-
+                const data = {price, description, imageUrl, type, creator};
+                
+                console.log(data)
                 try {
     
                     const promise = await fetch('http://localhost:4000/create', {

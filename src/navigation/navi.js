@@ -29,7 +29,7 @@ class Navigation extends React.Component {
                 <Route path="/" exact component={!isLoggin ? NoLoginPage : HomePage} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage}/>
-                <Route path="/logout">Logout</Route>
+                <Redirect from='/logout' to='/' />
                 <Route path="/dog" component={Dog}/>
                 <Route path="/cat" component={Cat}/>
                 <Route path="/fish" component={Fish}/>
