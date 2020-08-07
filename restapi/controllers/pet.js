@@ -24,10 +24,10 @@ const getPets = async (pet)=>{
     return pets;
 }
 
-// const getOnePlay = async (id)=>{
-//     const play = await Play.findById(id).lean()
-//     return play;
-// }
+const getOnePet = async (id)=>{
+    const pet = await Pet.findById(id).lean()
+    return pet;
+}
 
 // const getOnePlayWithFriends = async (id)=>{
 //     const play = await Play.findById(id).populate('usersLiked').lean()
@@ -38,7 +38,7 @@ const getPets = async (pet)=>{
 module.exports = {
     savePet,
     getPets,
-    // getOnePlay,
+    getOnePet,
     // getOnePlayWithFriends,
     // sortPlays
 }

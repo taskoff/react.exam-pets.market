@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Pet = require('../models/pet');
 const {getUserStatus, verifyToken} = require('../controllers/auth');
-const {savePet, getOnePlay, getOnePlayWithFriends, sortPlays, getAllPlays} = require('../controllers/pet');
+const {savePet, getOnePet, getOnePlayWithFriends, sortPlays, getAllPlays} = require('../controllers/pet');
 
 
 
@@ -12,25 +12,13 @@ const {savePet, getOnePlay, getOnePlayWithFriends, sortPlays, getAllPlays} = req
         res.send(pet)
     })
     router.get('/details/:id' ,  async (req, res)=>{
-        if (req.isLoggedIn) {
-            
+       
+            console.log
             const id = req.params.id;
-            const obj = verifyToken(req, res)
-            const play = await getOnePlayWithFriends(id)
-           
-            const creator = play.usersLiked[0];
-            console.log(creator)
-            const likers = play.usersLiked.slice(1)
-            
-           
-            const friend = likers.find(e=>e.username === obj.username)
-                res.render('play/details', {
-                    ...play,
-                    isCreator: creator.username === obj.username,
-                    isLogin: true,
-                    isFriend: friend
-                });
-        }
+            // const obj = verifyToken(req, res);
+            const pet = await getOnePet(id);
+            res.send(pet);
+        
     })
 
     router.get('/delete/:id', async (req, res)=>{

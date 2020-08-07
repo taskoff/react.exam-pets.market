@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
 import Title from '../../../components/title/title';
 import Header from '../../../components/header/header';
 import Pic from '../../../components/image/image';
@@ -9,41 +10,44 @@ import BacgroundContext from '../../../context/details-background';
 import MyContext from '../../../context/context';
 
 
-class Details extends React.Component {
-    constructor(props){
-        super(props)
-       
+const Details = ()=> {
+
+    const [pet, setPet] = useState({})
+    
+    const context = useContext(MyContext)
+    const {id}  = useParams();
+
+    const getPetInfo = async ()=>{
+        console.log(1)
+        const promise = await fetch(`http://localhost:4000/details/${id}`);
+        const res = await promise.json() 
+        setPet(res)
+
     }
-
-     static contextType = MyContext;
-
-    render() {
-        console.log(this.context.color)
-        const pet = this.context.color;
+       
+    useEffect(()=>{
+        getPetInfo()
+    },[])
         
         return (
            
 
-            <div className={styles[`${this.context.color}`]}>
+            <div className={styles[`${context.color}`]}>
                     <Header />
                     <SecondMenu />
 
                     <Title title="Details"  />
                 <div className={styles['notice-container']}>
-                    <BacgroundContext.Provider value={this.state}>
-                        <Pic path='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*' type='details' />
-                    </BacgroundContext.Provider>
-                   
+                    <Pic path={pet.imageUrl} type='details' />
                     <div className={styles['details-box']}>
-                        <p className={styles.text}>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum</p>
-                        <p className={styles.text}>Price: 20$</p>
-                        <p className={styles.text}>Autor:</p>
+                        <p className={styles.text}>{pet.description}</p>
+                        <p className={styles.text}>{pet.price}$</p>
+                        <p className={styles.text}>Autor: {pet.creator}</p>
                     </div>
                 </div>
             </div>
            
         )
-    }
+    
 }
-Details.contextType = MyContext
 export default Details;
