@@ -9,7 +9,7 @@ const Pic = (props)=>{
     return (
         <MyContext.Consumer>
 
-            {({setDetailsBackground})=> <Link className={styles.link} to={`/details/${props.id}`} onClick={()=>setDetailsBackground(props.pet)}>
+            {({setDetailsBackground})=> <Link className={styles[props.class]} to={`/details/${props.id}`} onClick={()=>setDetailsBackground(props.pet)}>
                 <div className={styles[`img-box-${props.type}`]}>
 
                         <img className={styles[`gallery-img-${props.type}`]} src={props.path}></img>

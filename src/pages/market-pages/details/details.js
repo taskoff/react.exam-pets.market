@@ -4,10 +4,9 @@ import Title from '../../../components/title/title';
 import Header from '../../../components/header/header';
 import Pic from '../../../components/image/image';
 import styles from './details.module.css';
-import DetailsBackground from '../../../context/details-background';
 import SecondMenu from '../../../components/menus/second-menu/second-menu';
-import BacgroundContext from '../../../context/details-background';
 import MyContext from '../../../context/context';
+import getPetInfo from '../../../untils/get-pet-details';
 
 
 const Details = ()=> {
@@ -17,16 +16,13 @@ const Details = ()=> {
     const context = useContext(MyContext)
     const {id}  = useParams();
 
-    const getPetInfo = async ()=>{
-        console.log(1)
-        const promise = await fetch(`http://localhost:4000/details/${id}`);
-        const res = await promise.json() 
-        setPet(res)
-
+    const getInfo = async ()=>{
+        const res =  await getPetInfo(id);
+        setPet(res);
     }
        
-    useEffect(()=>{
-        getPetInfo()
+    useEffect( ()=>{
+       getInfo()
     },[])
         
         return (
@@ -38,7 +34,7 @@ const Details = ()=> {
 
                     <Title title="Details"  />
                 <div className={styles['notice-container']}>
-                    <Pic path={pet.imageUrl} type='details' />
+                    <Pic path={pet.imageUrl} type='details' class='no-click'/>
                     <div className={styles['details-box']}>
                         <p className={styles.text}>{pet.description}</p>
                         <p className={styles.text}>{pet.price}$</p>
