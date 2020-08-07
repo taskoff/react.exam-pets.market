@@ -9,7 +9,7 @@
     background: linear-gradient(0deg, rgba(227,183,146,1) 45%, rgba(196,98,16,1) 100%);
     color: rgb(60,60,60);
 }
-form {
+.add-form {
     text-align: end;
     margin-right: 150px;
     margin-top: 50px;

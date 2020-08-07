@@ -1,0 +1,41 @@
+.form-box {
+    max-width: 60%;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px 0;
+    box-shadow: 0 0 10px black;
+}
+.form {
+    max-width: 500px;
+    margin: auto;
+    text-align: start;
+}
+.submit-button {
+    /* width: 50px; */
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+.alredy {
+    margin-top: 50px;
+}
+
+.form-link {
+    margin-left: 10px;
+}
+
+.input-box {
+    position: relative;
+}
+.error {
+    position: absolute;
+    top: 100%;
+    left: 52%;
+    background-color: white;
+    padding: 5px 10px;
+}
+
+.hiden {
+    display: none;
+}

@@ -10,7 +10,6 @@ const generateToken = (data)=>{
 
 const verifyToken = (req, res, next)=>{
     const token = req.headers['authorization']
-    console.log(req.headers)
     const obj = jwt.verify(token, config.development.privateKey);
     return obj;
 }
@@ -33,13 +32,10 @@ const registerUser = async (req, res)=> {
         bcrypt.genSalt(10, function (err, salt){
         bcrypt.hash(password, salt, async function(err, hash){
             try{
-              console.log(2)
-
                 const user = await new User({username, password:hash}).save();
                
                 const userId = user._id;
                 const token = generateToken({username, userId})
-                console.log(token)
                 res.header("Authorization", token).send(user);
                
                
