@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext} from 'react';
 import {useHistory} from 'react-router-dom';
-import Title from '../title/title';
-import Header from '../header/header';
 import styles from './form.module.css'
 import Input from '../Input/input';
 import InputError from '../input-error/input-error';
@@ -15,22 +13,26 @@ const Form = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [repassword, setRepassword] = useState('');
-    const [userInputErr, setUserInputErr] = useState(false)
-    const [passwordInputErr, setPasswordInputErr] = useState(false)
-    const [rePassInputErr, setRePassInputErr] = useState(false)
+    const [userInputErr, setUserInputErr] = useState(false);
+    const [userLengthErr, setUserLengthErr] = useState(false);
+    const [passwordInputErr, setPasswordInputErr] = useState(false);
+    const [passLengthErr, setPassLengthErr] = useState(false);
+    const [rePassInputErr, setRePassInputErr] = useState(false);
     const history = useHistory();
 
     const submitHandler = async (e)=>{
         e.preventDefault()
-        const data = {username, password}
-            authication(data, context, history, props.path);
+        if(!userInputErr && !userLengthErr && !passwordInputErr && !passLengthErr && !rePassInputErr && username && password){
+            const data = {username, password}
+                authication(data, context, history, props.path);
+        } else {
+            alert('Usenrame and Password are required!')
+        }
     }
 
     const checkInputForErr = (e)=>{
-        console.log(e.target)
         const value = e.target.value;
         const name = e.target.name;
-
 
         const objWithEmpty = {
             username: ()=>setUserInputErr(true),
@@ -41,21 +43,36 @@ const Form = (props) => {
             username: ()=>setUserInputErr(false),
             password: ()=>setPasswordInputErr(false)
         }
+
+        const objWithNotLength = {
+            username: ()=>setUserLengthErr(true),
+            password: ()=>setPassLengthErr(true)
+        }
+        const objWithLength = {
+            username: ()=>setUserLengthErr(false),
+            password: ()=>setPassLengthErr(false)
+        }
+
         if(value === ''){
-            objWithEmpty[name]()
+            objWithEmpty[name]();
         } else {
-            objWithNotEmpty[name]()
+            objWithNotEmpty[name]();
+        }
+        if(value.length < 3 && value.length > 0) {
+            objWithNotLength[name]();
+        } else {
+            objWithLength[name]();
         }
 
-        }
+    }
 
-        const rePassCheck = ()=>{
-            if(password !== repassword ) {
-                setRePassInputErr(true);
-            } else {
-                setRePassInputErr(false);
-            }
+    const rePassCheck = ()=>{
+        if(password !== repassword ) {
+            setRePassInputErr(true);
+        } else {
+            setRePassInputErr(false);
         }
+    }
     return (
         
         <div className={styles['form-box']}>
@@ -73,6 +90,9 @@ const Form = (props) => {
                         {userInputErr? <div className={styles.error}>
                             <InputError msg='Username is required' class='standart' />
                         </div> : null}
+                        {userLengthErr? <div className={styles.error}>
+                            <InputError msg='Username must have min 3 simbols' class='standart' />
+                        </div> : null}
                     </div>
 
                     <div className={styles['input-box']}>
@@ -88,36 +108,43 @@ const Form = (props) => {
                         {passwordInputErr? <div className={styles.error}>
                             <InputError msg='Password is required' class='standart' />
                         </div> : null}
-
-                    </div>
-                    {props.repass ? <div className={`${styles['input-box']} ${styles[props.repass]}`}>
-                        <Input
-                            value={repassword} 
-                            label="RePassword" 
-                            type="password" 
-                            name="repassword"
-                            onChange={e=>setRepassword(e.target.value)}
-                            onBlur={rePassCheck}
-                        />
-                        {rePassInputErr? <div className={styles.error}>
-                            <InputError msg="RePassword don't mach" class='standart' />
+                        {passLengthErr? <div className={styles.error}>
+                            <InputError msg='Password must have min 3 simbols' class='standart' />
                         </div> : null}
 
+                    </div>
+                    {props.repass ? <div>
+
+                       <div className={`${styles['input-box']} ${styles[props.repass]}`}>
+                            <Input
+                                value={repassword} 
+                                label="RePassword" 
+                                type="password" 
+                                name="repassword"
+                                onChange={e=>setRepassword(e.target.value)}
+                                onBlur={rePassCheck}
+                            />
+                            {rePassInputErr? <div className={styles.error}>
+                                <InputError msg="RePassword don't mach" class='standart' />
+                            </div> : null}
+
+                        </div>
+
+                        <button className={styles['submit-button']}>Sign Up</button>
+                       <div className={`${styles.alredy} ${styles[props.repass]}}`}>
+                            <p > Alredy have account? Then just
+                            <span className={styles['form-link']}><Link to="/login">Sign-In</Link>!</span>
+                            </p>
+                        </div>
                     </div> : null}
-
-                    {props.repass?<button className={styles['submit-button']}>Sign Up</button>: null}
-                    {props.repass?<div className={`${styles.alredy} ${styles[props.repass]}}`}>
-                        <p > Alredy have account? Then just
-                          <span className={styles['form-link']}><Link to="/login">Sign-In</Link>!</span>
-                        </p>
-                    </div>:null}
-
-                   { !props.repass?<button className={styles['submit-button']}>Sign Up</button>:null}
-                    {!props.repass?<div className={styles.alredy}>
-                        <p > Don't have account? Then just
-                          <span className={styles['form-link']}><Link to="/register">Sign-Up</Link>!</span>
-                        </p>
-                    </div>:null}
+                    {!props.repass? <div>
+                       <button className={styles['submit-button']}>Sign Up</button>
+                       <div className={styles.alredy}>
+                            <p > Don't have account? Then just
+                            <span className={styles['form-link']}><Link to="/register">Sign-Up</Link>!</span>
+                            </p>
+                        </div>
+                    </div> : null }  
                 </form>
          </div>
         

@@ -52,10 +52,10 @@ const registerUser = async (req, res)=> {
 
 const loginUser = async (req, res)=>{
     const {username, password} = req.body;
-    console.log(username, password)
+    console.log('username:',username, 'password',password)
     const user = await User.findOne({username});
-    const status = bcrypt.compare(password, user.password);
-    
+    const status = await bcrypt.compare(password, user.password);
+    console.log('status:', status)
     if (status) {
         const userId = user._id
         const token = generateToken({ username, userId })

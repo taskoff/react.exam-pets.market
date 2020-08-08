@@ -4,10 +4,6 @@ const {registerUser, loginUser} = require('../controllers/auth');
 const {getUserStatus, guestAccess} = require('../controllers/auth');
 
 
-router.get('/login', getUserStatus, guestAccess, (req, res)=>{
-    
-        res.render('user/login');
-})
 
 router.post('/login', async (req, res)=>{
     console.log(req.body)
