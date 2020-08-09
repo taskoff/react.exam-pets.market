@@ -1,7 +1,37 @@
-.notice-container {
-    display: flex;
+.page-container {
     max-width: 60%;
     margin: auto;
+    /* text-align: center; */
+}
+.notice-container {
+    display: flex;
+    margin: 50px 0;
+    /* max-width: 60%;
+    margin: auto; */
+}
+.comments-title {
+    
+}
+.comment-box {
+    margin-top: 30px;
+}
+.comment-text-box {
+    width: 60%;
+    /* margin: auto; */
+}
+.comment-text {
+    margin-left: 0;
+    margin-top: 30px;
+    width: 100%;
+    min-height: 100px;
+    font-size: 1em;
+}
+.comments-container {
+   font-size: 1.5em;
+
+}
+.comment-button {
+    padding: 10px 20px;
 }
 
 .details-box {
@@ -9,8 +39,25 @@
     font-size: 1.5em;
 }
 
+.comment {
+    height: 100px;
+    /* background-color: rgb(247,255,204); */
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+.comment-author {
+    text-align: end;
+}
+.comment-author>span {
+    margin-right: 10px;
+}
 .text {
     padding: 10px 0;
+}
+
+.span {
+    margin-left: 10px;
 }
 .dog {
     background: linear-gradient(0deg, rgba(252,252,252,1) 0%, rgba(196,98,16,1) 100%);
@@ -19,5 +66,9 @@
 .cat {
     min-height: 100vh;
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(176,191,26,1) 100%);
+}
+.fish {
+    min-height: 100vh;
+    background: linear-gradient(0deg, rgba(252,252,252,1) 0%, rgba(114,160,193,1) 100%);
 
 }
