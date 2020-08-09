@@ -8,9 +8,7 @@ class ImgGallery extends React.Component {
         super(props)
 
         this.state ={
-            images: [
-            ],
-
+            images: [],
         }
     }
     static contextType = BacgroundContext;
