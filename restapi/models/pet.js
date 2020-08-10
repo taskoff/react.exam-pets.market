@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { ObjectId } = require('mongodb');
 
 const petSchema = new mongoose.Schema({
     type: {
@@ -25,9 +26,13 @@ const petSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    creator: {
-       type:String
-    }
+    // creator: {
+    //    id: {type:ObjectId},
+    //    username: {type: String}
+    // }
+    creator: 
+        {type: String}
+     
     
 })
 

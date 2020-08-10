@@ -8,14 +8,38 @@ import Title from '../../../components/title/title';
 const MyPets = ()=>{
 
     const context = useContext(MyContext);
-    const myPetsRender = ()=>{
+    const [myPets, setMyPets] = useState([]);
+    
+
+    const getMyPets = async ()=> {
+        console.log(context.id)
+        const promise = await fetch(`http://localhost:4000/my-pets/${context.id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Username': `${context.username}`
+            },
+           
+          });
+        const res = await promise.json(); 
+        console.log(res)
+        setMyPets(res);
     }
     
+    const myPetsRender = ()=>{
+        return myPets.map(e=>{
+            return (
+                <div key={e._id}>
+                    <img src={e.imageUrl}/>
+                    <p>{e.description}</p>
+                </div>
+            )
+        })
+    }
+
     useEffect(()=>{
-    
-        console.log(context)
-    
-    })
+        getMyPets()
+    }, [])
 
     return (
         <div>

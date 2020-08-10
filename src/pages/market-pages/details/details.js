@@ -12,6 +12,7 @@ import getPetInfo from '../../../untils/get-pet-details';
 const Details = ()=> {
 
     const [pet, setPet] = useState({})
+    const [creator, setCreator] = useState('')
     const [comment, setComment] = useState('')
     const [comments, setComments] = useState([{comment:'Hi, can I have your phone number?', author: 'Somebody'}])
     
@@ -22,6 +23,7 @@ const Details = ()=> {
         const res =  await getPetInfo(id);
         console.log(res)
         setPet(res);
+        setCreator(res.creator)
         // setComments(res.messages)
     }
     const renderComments = ()=>{
@@ -59,7 +61,7 @@ const Details = ()=> {
                             <div className={styles['details-box']}>
                                 <p className={styles.text}>{pet.description}</p>
                                 <p className={styles.text}>Price:<span className={styles.span}>{pet.price}</span>$</p>
-                                <p className={styles.text}>Autor:<span span className={styles.span}>{pet.creator}</span></p>
+                                <p className={styles.text}>Autor:<span span className={styles.span}>{creator }</span></p>
                             </div>
                         </div>
                         <div className={styles['comments-container']}>

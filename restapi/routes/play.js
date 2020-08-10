@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Pet = require('../models/pet');
 const {getUserStatus, verifyToken} = require('../controllers/auth');
-const {savePet, getOnePet, getOnePlayWithFriends, sortPlays, getAllPlays} = require('../controllers/pet');
+const {savePet, getOnePet, getMyPets} = require('../controllers/pet');
 
 
 
@@ -24,8 +24,13 @@ const {savePet, getOnePet, getOnePlayWithFriends, sortPlays, getAllPlays} = requ
     router.get('/delete/:id', async (req, res)=>{
         const id = req.params.id;
         await Pet.deleteOne({_id:id});
-        // TODO for user
         res.redirect('/');
+    })
+    router.get('/my-pets/:id', async (req, res)=>{
+        const id = req.params.id;
+        const user = req.headers.username;
+        const myPets = await getMyPets(user);
+        res.send(myPets);
     })
 
     router.get('/edit/:id',getUserStatus, async (req, res)=>{
