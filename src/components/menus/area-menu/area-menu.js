@@ -13,7 +13,7 @@ const AreaMenu = ({ type })=>{
     return (
         <header className={`${styles['second-menu']} ${styles[type]}`}>
             <MenuLink path='/private/add' color='red' link='Add New Pet' />
-            <MenuLink path='/private/pets' color='green' link='My Pets' />
+            <MenuLink path='/private/my-pets' color='green' link='My Pets' />
             <MenuLink path='/logout' onclick={logOut} color='dark-green' link='Logout' />
         </header>
     )

@@ -13,6 +13,8 @@ import Details from '../pages/market-pages/details/details';
 import PrivateArea from '../pages/area-pages/area-page/area';
 import AddPet from '../pages/area-pages/add-pet/addPet';
 import NoLoginPage from '../pages/no-login-home/no-login-page';
+import EditPet from '../pages/area-pages/edit-pet/edit-pet';
+import MyPets from '../pages/area-pages/my-pets/my-pets';
 
 class Navigation extends React.Component {
     constructor(props){
@@ -36,9 +38,10 @@ class Navigation extends React.Component {
                 <Route path="/rabbit" component={Rabbit}/>
                 <Route path="/other" component={Other}/>
                 <Route path="/private/add" component={AddPet}/>
+                <Route path="/private/edit" component={EditPet}/>
+                <Route path="/private/my-pets" component={MyPets}/>
                 <Route path="/private" component={PrivateArea}/>
                 <Route path="/details/:id" component={Details}/>
-
     
                 </Switch>
             </BrowserRouter>

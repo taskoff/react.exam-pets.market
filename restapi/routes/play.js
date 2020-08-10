@@ -44,10 +44,9 @@ const {savePet, getOnePet, getOnePlayWithFriends, sortPlays, getAllPlays} = requ
 
     router.post('/edit/:id',async (req, res)=>{
         const id = req.params.id;
-        const {title, description, imageUrl, isPublic} = req.body;
-        const play = await Pet.findByIdAndUpdate(id, { "$set": {title, description, imageUrl, isPublic: isPublic === 'on'} });
-        
-        res.redirect('/');
+        const {type, description, imageUrl, price} = req.body;
+        const pet = await Pet.findByIdAndUpdate(id, { "$set": {type, description, imageUrl, price} });
+        res.send(pet)
      })
 
      router.get('/like/:id',async (req, res)=>{
