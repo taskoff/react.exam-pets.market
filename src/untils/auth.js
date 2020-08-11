@@ -10,7 +10,7 @@ const authication = async (data, context, history, path)=>{
        const res = await promise.json()
        const authToken = promise.headers.get('Authorization');
        document.cookie = `x-auth-token=${authToken}`;
-       context.loginIn(res.username, res._id);
+       context.loginIn(res.email, res._id);
        history.push('/')
 
     } catch (e){

@@ -16,7 +16,7 @@ const verifyToken = (req, res, next)=>{
 
 const registerUser = async (req, res)=> {
     const {
-        username,
+        email,
         password,
         repeatPassword
         } = req.body ;
@@ -32,10 +32,10 @@ const registerUser = async (req, res)=> {
         bcrypt.genSalt(10, function (err, salt){
         bcrypt.hash(password, salt, async function(err, hash){
             try{
-                const user = await new User({username, password:hash}).save();
+                const user = await new User({email, password:hash}).save();
                
                 const userId = user._id;
-                const token = generateToken({username, userId})
+                const token = generateToken({email, userId})
                 res.header("Authorization", token).send(user);
                
                
@@ -51,14 +51,14 @@ const registerUser = async (req, res)=> {
 }
 
 const loginUser = async (req, res)=>{
-    const {username, password} = req.body;
-    console.log('username:',username, 'password',password)
-    const user = await User.findOne({username});
+    const {email, password} = req.body;
+    console.log('username:',email, 'password',password)
+    const user = await User.findOne({email});
     const status = await bcrypt.compare(password, user.password);
     console.log('status:', status)
     if (status) {
         const userId = user._id
-        const token = generateToken({ username, userId })
+        const token = generateToken({ email, userId })
         res.header("Authorization", token).send(user);
         
     }

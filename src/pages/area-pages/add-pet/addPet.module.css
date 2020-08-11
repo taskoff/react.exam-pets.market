@@ -11,40 +11,43 @@
 }
 .add-form {
     text-align: end;
-    margin-right: 150px;
-    margin-top: 50px;
+    /* margin-right: 150px;
+    margin-top: 50px; */
+    max-width: 50%;
+    margin: auto;
 }
 .form-textarea-box,
 .form-select-box {
     font-size: 1.5em;
-    margin-left: 20px;
     padding-right: 20px;
+    margin-left: 20px;
 }
 .form-select {
     min-width: 400px;
     font-size: 0.8em;
-    margin-left: 10px;
     text-align-last:center;
     font-family: 'Ranchers', cursive;
     color: #404040;
 }
 .form-textarea-box {
-    display: flex;
-    justify-content: flex-end;
+    /* display: flex;
+    justify-content: flex-end; */
 }
-.form-textarea>label {
-    margin-right: 10px;
-}
+
 .form-label {
     width: 100px;
 }
-textarea {
+.textarea {
     width: 400px;
     height: 100px;
-    margin-left: 10px;
+    margin-left: 0;
 }
 .price-input {
     width: 50px
+}
+.select-label,
+.textarea-label {
+    text-align: start;
 }
 .submit-btn-box {
     padding: 20px 0;

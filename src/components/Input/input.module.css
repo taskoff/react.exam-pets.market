@@ -1,18 +1,21 @@
 .input-box {
     font-size: 1.5em;
     margin: 20px;
-    /* text-align: start; */
 }
 .form-input {
-   /* line-height: 1.8em; */
    font-size: 1em;
-  
+    
    width: 396px;
 }
 .form-label {
     width: 100px;
     color: rgb(60,60,60);
+   
 }
+.input-label {
+    text-align: start;
+}
+
 .price-input {
     width: 50px
 }

@@ -10,7 +10,7 @@ import authication from '../../untils/auth';
 
 const Form = (props) => { 
     const context = useContext(MyContext); 
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repassword, setRepassword] = useState('');
     const [userInputErr, setUserInputErr] = useState(false);
@@ -22,11 +22,11 @@ const Form = (props) => {
 
     const submitHandler = async (e)=>{
         e.preventDefault()
-        if(!userInputErr && !userLengthErr && !passwordInputErr && !passLengthErr && !rePassInputErr && username && password){
-            const data = {username, password}
+        if(!userInputErr && !userLengthErr && !passwordInputErr && !passLengthErr && !rePassInputErr && email && password){
+            const data = {email: email, password}
                 authication(data, context, history, props.path);
         } else {
-            alert('Usenrame and Password are required!')
+            alert('Email and Password are required!')
         }
     }
 
@@ -35,21 +35,21 @@ const Form = (props) => {
         const name = e.target.name;
 
         const objWithEmpty = {
-            username: ()=>setUserInputErr(true),
+            email: ()=>setUserInputErr(true),
             password: ()=>setPasswordInputErr(true)
         }
 
         const objWithNotEmpty = {
-            username: ()=>setUserInputErr(false),
+            email: ()=>setUserInputErr(false),
             password: ()=>setPasswordInputErr(false)
         }
 
         const objWithNotLength = {
-            username: ()=>setUserLengthErr(true),
+            email: ()=>setUserLengthErr(true),
             password: ()=>setPassLengthErr(true)
         }
         const objWithLength = {
-            username: ()=>setUserLengthErr(false),
+            email: ()=>setUserLengthErr(false),
             password: ()=>setPassLengthErr(false)
         }
 
@@ -80,18 +80,18 @@ const Form = (props) => {
                 <form onSubmit={submitHandler} className={styles.form} >
                     <div className={styles['input-box']}>
                         <Input 
-                            value={username} 
-                            label="Username" 
+                            value={email} 
+                            label="Email" 
                             type="text" 
-                            name="username" 
-                            onChange={e=>setUsername(e.target.value)} 
+                            name="email" 
+                            onChange={e=>setEmail(e.target.value)} 
                             onBlur={checkInputForErr}
                         />
                         {userInputErr? <div className={styles.error}>
-                            <InputError msg='Username is required' class='standart' />
+                            <InputError msg='Email is required' class='standart' />
                         </div> : null}
                         {userLengthErr? <div className={styles.error}>
-                            <InputError msg='Username must have min 3 simbols' class='standart' />
+                            <InputError msg='Email must have min 3 simbols' class='standart' />
                         </div> : null}
                     </div>
 

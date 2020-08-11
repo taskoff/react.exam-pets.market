@@ -6,8 +6,9 @@ import Title from '../../../components/title/title';
 import Header from '../../../components/header/header';
 import AreaMenu from '../../../components/menus/area-menu/area-menu';
 import styles from './addPet.module.css';
-import getCookie from '../../../untils/coockie';
+// import getCookie from '../../../untils/coockie';
 import MyContext from '../../../context/context';
+import createPet from '../../../untils/create-pet';
 
 
 const AddPet = ()=> {
@@ -19,6 +20,7 @@ const AddPet = ()=> {
     const history = useHistory();
     const context = useContext(MyContext);
 
+
         const submitHandler = async (e)=>{
             e.preventDefault()
             const creator = context.username
@@ -27,22 +29,24 @@ const AddPet = ()=> {
                 // const creator = {id: context.id, username: context.username}
                 const data = {price, description, imageUrl, type, creator};
                 
-                try {
+                const promise = await createPet(data);
+                history.push('/')
+                // try {
     
-                    const promise = await fetch('http://localhost:4000/create', {
-                     method: 'POST',
-                     headers: {
-                         'Content-Type': 'application/json',
-                         'Authorization': getCookie('x-auth-token')
-                     },
-                     body: JSON.stringify(data) ,
-                   })
+                //     const promise = await fetch('http://localhost:4000/create', {
+                //      method: 'POST',
+                //      headers: {
+                //          'Content-Type': 'application/json',
+                //          'Authorization': getCookie('x-auth-token')
+                //      },
+                //      body: JSON.stringify(data) ,
+                //    })
                    
-                   history.push('/')
+                //    history.push('/')
         
-                } catch (e){
-                    console.log(e)
-                }
+                // } catch (e){
+                //     console.log(e)
+                // }
     
 
             }
@@ -55,7 +59,9 @@ const AddPet = ()=> {
                 <div className={styles['form-box']}>
                     <form onSubmit={submitHandler} className={styles['add-form']}>
                         <div className={styles['form-select-box']}>
-                            <label for="pet-type" >Select Type</label>
+                            <div className={styles['select-label']}>
+                                <label htmlFor="pet-type" >Select Type</label>
+                            </div>
                             <select id='pet-type'  onChange={e=>setType(e.target.value)} className={styles['form-select']} >
                                 <option className={styles['form-option']}></option>
                                 <option className={styles['form-option']}>Dog</option>
@@ -81,12 +87,17 @@ const AddPet = ()=> {
                             onChange={e=>setPrice(e.target.value)}
                              />
                         <div className={styles['form-textarea-box']}>
-                            <label for="pet-description">Description</label>
-                            <textarea 
-                                id="pet-description" 
-                                value={description} 
-                                onChange={e=>setDescription(e.target.value)}
+                            <div className={styles['textarea-label']}>
+                                <label for="pet-description">Description</label>
+                            </div>
+                            <div >
+                                <textarea 
+                                    className={styles.textarea}
+                                    id="pet-description" 
+                                    value={description} 
+                                    onChange={e=>setDescription(e.target.value)}
                                 ></textarea>
+                            </div>
                         </div>
                         <div className={styles['submit-btn-box']}>
                             <button className={styles['submit-btn']}>Add Pet</button>
