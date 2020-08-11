@@ -7,7 +7,7 @@ import styles from './details.module.css';
 import SecondMenu from '../../../components/menus/second-menu/second-menu';
 import MyContext from '../../../context/context';
 import getPetInfo from '../../../untils/get-pet-details';
-
+import updateMessages from '../../../untils/update-messages';
 
 const Details = ()=> {
 
@@ -24,7 +24,8 @@ const Details = ()=> {
         console.log(res)
         setPet(res);
         setCreator(res.creator)
-        setComments(res.messages)
+        const messages = res.messages.reverse()
+        setComments(messages)
     }
     const renderComments = ()=>{
         return comments.map((e, i)=>{
@@ -42,16 +43,8 @@ const Details = ()=> {
             comment,
             author: context.email
         }
-        const promise = await fetch(`http://localhost:4000/message/${id}`, {
-         method: 'POST',
-         headers: {
-             'Content-Type': 'application/json'
-         },
-         body: JSON.stringify(data) ,
-       })
-       const res = await promise.json()
-    //    console.log(res)
-       getInfo()
+        await updateMessages(data, id);
+        getInfo()
     }
        
     useEffect( ()=>{
@@ -75,9 +68,9 @@ const Details = ()=> {
                         <div className={styles['notice-container']}>
                             <Pic path={pet.imageUrl} type='details' class='no-click'/>
                             <div className={styles['details-box']}>
-                                <p className={styles.text}>{pet.description}</p>
-                                <p className={styles.text}>Price:<span className={styles.span}>{pet.price}</span>$</p>
                                 <p className={styles.text}>Autor:<span span className={styles.span}>{creator }</span></p>
+                                <p className={styles.text}>Price:<span className={styles.span}>{pet.price}</span>$</p>
+                                <p className={styles.text}>{pet.description}</p>
                             </div>
                         </div>
                         <div className={styles['comments-container']}>

@@ -71,3 +71,14 @@
     pointer-events: none;
 }
 
+.price-box {
+    /* z-index: 99; */
+    position: absolute;
+    top: 10px;
+    right: 0;
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+    background-color: tomato;
+}
+

@@ -4,4 +4,6 @@ const getPetInfo = async (id)=>{
     return res;
 }
 
+
+
 export default getPetInfo;

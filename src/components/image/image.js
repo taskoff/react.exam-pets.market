@@ -13,6 +13,7 @@ const Pic = (props)=>{
                 <div className={styles[`img-box-${props.type}`]}>
 
                         <img className={styles[`gallery-img-${props.type}`]} src={props.path}></img>
+                        {props.isGallery ? <div className={styles['price-box']}>{props.price==='0'?'Free':props.price}$</div> : null}
                 </div>
             </Link>}
         </MyContext.Consumer>

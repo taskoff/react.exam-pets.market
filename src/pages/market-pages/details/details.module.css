@@ -9,6 +9,7 @@
     margin: 50px 0;
     /* max-width: 60%;
     margin: auto; */
+    overflow-wrap: break-word;
 }
 .comments-title {
     
@@ -41,6 +42,8 @@
 .details-box {
     margin-left: 20px;
     font-size: 1.5em;
+    max-width: 60%;
+    /* word-wrap: break-word;  */
 }
 
 .comment {
