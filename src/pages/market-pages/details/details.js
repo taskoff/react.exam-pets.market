@@ -14,7 +14,7 @@ const Details = ()=> {
     const [pet, setPet] = useState({})
     const [creator, setCreator] = useState('')
     const [comment, setComment] = useState('')
-    const [comments, setComments] = useState([{comment:'Hi, can I have your phone number?', author: 'Somebody'}])
+    const [comments, setComments] = useState([])
     
     const context = useContext(MyContext)
     const {id}  = useParams();
@@ -24,26 +24,42 @@ const Details = ()=> {
         console.log(res)
         setPet(res);
         setCreator(res.creator)
-        // setComments(res.messages)
+        setComments(res.messages)
     }
     const renderComments = ()=>{
-        return comments.map(e=>{
+        return comments.map((e, i)=>{
             return (
-                <div>
+                <div key={i} className={styles['comment-container']}>
                     <p className={styles.comment}>{e.comment}</p>
                     <p className={styles['comment-author']}><span>Author:</span>{e.author}</p>
                 </div>
             )
         })
     }
-    const commentSubmit = ()=>{
-        console.log(comment)
+    const commentSubmit = async ()=>{
+        setComment('')
+        const data = {
+            comment,
+            author: context.email
+        }
+        const promise = await fetch(`http://localhost:4000/message/${id}`, {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(data) ,
+       })
+       const res = await promise.json()
+    //    console.log(res)
+       getInfo()
     }
        
     useEffect( ()=>{
        getInfo()
     },[])
-    // useEffect()
+    useEffect(()=>{
+        renderComments()
+    })
         
         return (
 

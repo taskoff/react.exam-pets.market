@@ -20,7 +20,7 @@ class App extends React.Component {
   }
 
   loginIn = (u, i) => {
-    this.setState({isLoggin:true, username:u, id:i});
+    this.setState({isLoggin:true, email:u, id:i});
   }
   logOut = ()=>{
     this.setState({isLoggin:false, username:'', id:''});

@@ -54,6 +54,16 @@ const {savePet, getOnePet, getMyPets} = require('../controllers/pet');
         res.send(pet)
      })
 
+    router.post('/message/:id',async (req, res)=>{
+        const id = req.params.id;
+        console.log(req.body)
+        const message = req.body;
+        // const pet = await Pet.findByIdAndUpdate(id, { "$set": {type, description, imageUrl, price} });
+        const pet = await Pet.findByIdAndUpdate(id, { $addToSet:{messages: [message]} });
+        console.log(pet)
+        res.send(pet);
+    })
+     
      router.get('/like/:id',async (req, res)=>{
         const id = req.params.id;
         const obj = await verifyToken(req);

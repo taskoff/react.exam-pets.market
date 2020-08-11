@@ -23,31 +23,13 @@ const AddPet = ()=> {
 
         const submitHandler = async (e)=>{
             e.preventDefault()
-            const creator = context.username
+            const creator = context.email
             if(price && description && imageUrl && type){
-                console.log(context.id, context.username)
                 // const creator = {id: context.id, username: context.username}
                 const data = {price, description, imageUrl, type, creator};
                 
                 const promise = await createPet(data);
                 history.push('/')
-                // try {
-    
-                //     const promise = await fetch('http://localhost:4000/create', {
-                //      method: 'POST',
-                //      headers: {
-                //          'Content-Type': 'application/json',
-                //          'Authorization': getCookie('x-auth-token')
-                //      },
-                //      body: JSON.stringify(data) ,
-                //    })
-                   
-                //    history.push('/')
-        
-                // } catch (e){
-                //     console.log(e)
-                // }
-    
 
             }
         }
