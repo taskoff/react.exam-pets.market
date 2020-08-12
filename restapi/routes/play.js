@@ -29,6 +29,7 @@ const {savePet, getOnePet, getMyPets} = require('../controllers/pet');
     router.get('/my-pets/:id', async (req, res)=>{
         const id = req.params.id;
         const user = req.headers.username;
+        console.log(user)
         const myPets = await getMyPets(user);
         res.send(myPets);
     })

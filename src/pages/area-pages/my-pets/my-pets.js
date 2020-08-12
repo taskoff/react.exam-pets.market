@@ -1,14 +1,20 @@
 import React, {useState, useContext, useEffect} from 'react';
 import MyContext from '../../../context/context';
+import styles from './my-pets.module.css';
 import Header from '../../../components/header/header';
 import AreaMenu from '../../../components/menus/area-menu/area-menu';
 import Title from '../../../components/title/title';
+import Pic from '../../../components/image/image';
 
 
 const MyPets = ()=>{
 
     const context = useContext(MyContext);
     const [myPets, setMyPets] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isMyPets, setIsMyPets] = useState(false);
+
+
     
 
     const getMyPets = async ()=> {
@@ -17,21 +23,25 @@ const MyPets = ()=>{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Username': `${context.username}`
+                'Username': `${context.email}`
             },
            
           });
         const res = await promise.json(); 
         console.log(res)
         setMyPets(res);
+        setIsLoading(false);
+        if(res.length>0){
+            setIsMyPets(true);
+        }
     }
     
     const myPetsRender = ()=>{
         return myPets.map(e=>{
             return (
-                <div key={e._id}>
-                    <img src={e.imageUrl}/>
-                    <p>{e.description}</p>
+                <div key={e._id} >
+                    <Pic path={e.imageUrl} type='gallery' id={e._id}/>
+
                 </div>
             )
         })
@@ -47,18 +57,21 @@ const MyPets = ()=>{
             <AreaMenu />
             <Title title="My Pets" />
             <div>
-                <h3>Profile Info</h3>
-                <p>Username:{context.username}</p>
-                <p>Email:</p>
+                <h3 className={styles['profile-title']}>Profile:<span>{context.email}</span> </h3>
             </div>
-            <div>
-                <h3>My Pets:</h3>
-                <div>
+            {isLoading ? <div>Loading....</div> : null}
+            {!isLoading ? <div>
+                {isMyPets ? <div className={styles['img-container']}>
                     {myPetsRender()}
-                </div>
-            </div>
+                </div> : null}
+                {!isMyPets ? <div>
+                    <h2 className={styles['no-pet-title']}>There are no Pets yet!</h2>
+                    </div>: null}
+            </div> : null}
         </div>
     )
 }
 
 export default MyPets;
+
+{/* <Pic path={pet.imageUrl} type='details' class='no-click'/> */}

@@ -1,0 +1,25 @@
+.profile-title,
+.my-pets-title,
+.no-pet-title {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.5em;
+}
+
+.img-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 50px;
+}
+
+.profile-title>span {
+    margin-left: 10px;
+    font-style: italic;
+}
+
+.no-pet-title {
+    font-size: 4em;
+    color: white;
+    text-shadow: 0 0 2px black;
+}
+

@@ -32,6 +32,7 @@ const getMyPets = async (myId)=>{
 
 const getOnePet = async (id)=>{
     const pet = await Pet.findById(id).lean()
+    console.log(pet)
     return pet;
 }
 
