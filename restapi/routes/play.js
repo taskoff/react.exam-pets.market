@@ -51,6 +51,7 @@ const {savePet, getOnePet, getMyPets} = require('../controllers/pet');
     router.post('/edit/:id',async (req, res)=>{
         const id = req.params.id;
         const {type, description, imageUrl, price} = req.body;
+        console.log(id)
         const pet = await Pet.findByIdAndUpdate(id, { "$set": {type, description, imageUrl, price} });
         res.send(pet)
      })

@@ -9,69 +9,72 @@ import styles from './edit-pet.module.css';
 import getCookie from '../../../untils/coockie';
 import MyContext from '../../../context/context';
 import getPetInfo from '../../../untils/get-pet-details';
+import AddPet from '../add-pet/addPet';
+import PetForm from '../../../components/forms/add-form/add-form';
 
 
 const EditPet = ()=> {
-    // const context = useContext(MyContext); 
-    const [imageUrl, setImageUrl] = useState('');
-    const [price, setPrice] = useState('');
-    const [type, setType] = useState('');
-    const [description, setDescription] = useState('');
-    const [pet, setPet] = useState({})
-    const history = useHistory();
-    const context = useContext(MyContext);
-    const {id}  = useParams();
+    // // const context = useContext(MyContext); 
+    // const [imageUrl, setImageUrl] = useState('');
+    // const [price, setPrice] = useState('');
+    // const [type, setType] = useState('');
+    // const [description, setDescription] = useState('');
+    // const [pet, setPet] = useState({})
+    // const history = useHistory();
+    // const context = useContext(MyContext);
+    // const {id}  = useParams();
 
-    const submitHandler = async (e)=>{
-            e.preventDefault()
-            const creator = context.username
-            if(price && description && imageUrl && type){
-                console.log(context.id, context.username)
-                const data = {price, description, imageUrl, type, creator};
+    // const submitHandler = async (e)=>{
+    //         e.preventDefault()
+    //         const creator = context.username
+    //         if(price && description && imageUrl && type){
+    //             console.log(context.id, context.username)
+    //             const data = {price, description, imageUrl, type, creator};
                 
-                console.log(data)
-                try {
+    //             console.log(data)
+    //             try {
     
-                    const promise = await fetch('http://localhost:4000/edit/', {
-                     method: 'POST',
-                     headers: {
-                         'Content-Type': 'application/json',
-                         'Authorization': getCookie('x-auth-token')
-                     },
-                     body: JSON.stringify(data) ,
-                   })
+    //                 const promise = await fetch('http://localhost:4000/edit/', {
+    //                  method: 'POST',
+    //                  headers: {
+    //                      'Content-Type': 'application/json',
+    //                      'Authorization': getCookie('x-auth-token')
+    //                  },
+    //                  body: JSON.stringify(data) ,
+    //                })
                    
-                   history.push('/')
+    //                history.push('/')
         
-                } catch (e){
-                    console.log(e)
-                }
+    //             } catch (e){
+    //                 console.log(e)
+    //             }
     
 
-            }
-    }
+    //         }
+    // }
 
-    const getInfo = async ()=>{
-        const res =  await getPetInfo(id);
-        console.log(res)
-        setPet(res);
-        // setComments(res.messages)
-    }
+    // const getInfo = async ()=>{
+    //     const res =  await getPetInfo(id);
+    //     console.log(res)
+    //     setPet(res);
+    //     // setComments(res.messages)
+    // }
 
-    useEffect(()=>{
-        getInfo()
-    },[])
+    // useEffect(()=>{
+    //     getInfo()
+    // },[])
 
         return (
             <div>
                 <Header/>
                 <AreaMenu />
                 <Title title="Edit Pet" />
-                <div className={styles['form-box']}>
+                <PetForm isEdit={true}/>
+                {/* <div className={styles['form-box']}>
                     <form onSubmit={submitHandler} className={styles['add-form']}>
                         <div className={styles['form-select-box']}>
                             <label htmlFor="pet-type" >Select Type</label>
-                            <select id='pet-type'  onChange={e=>setType(e.target.value)} className={styles['form-select']} >
+                            <select value={pet.type} id='pet-type'  onChange={e=>setType(e.target.value)} className={styles['form-select']} >
                                 <option ></option>
                                 <option >Dog</option>
                                 <option>Cat</option>
@@ -107,7 +110,7 @@ const EditPet = ()=> {
                             <button className={styles['submit-btn']}>Edit Pet</button>
                         </div>
                     </form>
-                </div>
+                </div> */}
 
             </div>
         )

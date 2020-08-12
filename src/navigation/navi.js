@@ -38,7 +38,7 @@ class Navigation extends React.Component {
                 <Route path="/rabbit" component={Rabbit}/>
                 <Route path="/other" component={Other}/>
                 <Route path="/private/add" component={AddPet}/>
-                <Route path="/private/edit" component={EditPet}/>
+                <Route path="/private/edit/:id" component={EditPet}/>
                 <Route path="/private/my-pets" component={MyPets}/>
                 <Route path="/private" component={PrivateArea}/>
                 <Route path="/details/:id" component={Details}/>

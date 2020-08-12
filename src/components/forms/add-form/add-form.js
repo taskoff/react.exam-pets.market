@@ -1,52 +1,64 @@
-import React, {useContext, useState} from 'react';
-import  {useHistory} from 'react-router-dom';
-
+import React, {useContext, useState, useEffect} from 'react';
+import  {useHistory, useParams} from 'react-router-dom';
 import Input from '../../../components/Input/input';
-import Title from '../../../components/title/title';
-import Header from '../../../components/header/header';
-import AreaMenu from '../../../components/menus/area-menu/area-menu';
-import styles from './addPet.module.css';
-// import getCookie from '../../../untils/coockie';
+import styles from './add-form.module.css';
 import MyContext from '../../../context/context';
 import createPet from '../../../untils/create-pet';
-import PetForm from '../../../components/forms/add-form/add-form';
+import getPetInfo from '../../../untils/get-pet-details';
+import editPet from '../../../untils/edit-pet';
+
+const PetForm = ({isEdit})=> {
+    const [imageUrl, setImageUrl] = useState('');
+    const [price, setPrice] = useState('');
+    const [type, setType] = useState('');
+    const [description, setDescription] = useState('');
+    // const [pet, setPet] = useState({})
+    const {id}  = useParams();
+
+    const history = useHistory();
+    const context = useContext(MyContext);
 
 
-const AddPet = ()=> {
-    // const context = useContext(MyContext); 
-    // const [imageUrl, setImageUrl] = useState('');
-    // const [price, setPrice] = useState('');
-    // const [type, setType] = useState('');
-    // const [description, setDescription] = useState('');
-    // const history = useHistory();
-    // const context = useContext(MyContext);
+        const submitHandler = async (e)=>{
+            e.preventDefault()
+            const creator = context.email
+            if(price && description && imageUrl && type){
+                const data = {price, description, imageUrl, type, creator};
+                if(!isEdit){
+                    const promise = await createPet(data);
+                } else {
+                    const promise = await editPet(data, id);
+                }
+                history.push('/')
 
+            }
+        }
+       
+        const getInfo = async ()=>{
+            if(id){
+                    const res =  await getPetInfo(id);
+                    console.log(res)
+                    // setPet(res);
+                    setType(res.type);
+                    setImageUrl(res.imageUrl);
+                    setPrice(res.price);
+                    setDescription(res.description);
+            }            
+        }
+        useEffect(()=>{
+            getInfo();
+        }, [])
 
-    //     const submitHandler = async (e)=>{
-    //         e.preventDefault()
-    //         const creator = context.email
-    //         if(price && description && imageUrl && type){
-    //             // const creator = {id: context.id, username: context.username}
-    //             const data = {price, description, imageUrl, type, creator};
-                
-    //             const promise = await createPet(data);
-    //             history.push('/')
-
-    //         }
-        // }
         return (
-            <div>
-                <Header/>
-                <AreaMenu />
-                <Title title="Add Pet" />
-                <PetForm />
-                {/* <div className={styles['form-box']}>
+           
+                
+                <div className={styles['form-box']}>
                     <form onSubmit={submitHandler} className={styles['add-form']}>
                         <div className={styles['form-select-box']}>
                             <div className={styles['select-label']}>
                                 <label htmlFor="pet-type" >Select Type</label>
                             </div>
-                            <select id='pet-type'  onChange={e=>setType(e.target.value)} className={styles['form-select']} >
+                            <select id='pet-type' value={type} onChange={e=>setType(e.target.value)} className={styles['form-select']} >
                                 <option className={styles['form-option']}></option>
                                 <option className={styles['form-option']}>Dog</option>
                                 <option>Cat</option>
@@ -83,15 +95,18 @@ const AddPet = ()=> {
                                 ></textarea>
                             </div>
                         </div>
-                        <div className={styles['submit-btn-box']}>
+                        {!isEdit ? <div className={styles['submit-btn-box']}>
                             <button className={styles['submit-btn']}>Add Pet</button>
-                        </div>
+                        </div> : null}
+                        {isEdit ? <div className={styles['edit-btn-box']}>
+                                        <button className={styles['submit-btn']}>Edit Pet</button>
+                                </div>  :null}
                     </form>
-                </div> */}
+                </div>
 
-            </div>
+            
         )
     
 }
 
-export default AddPet
+export default PetForm;

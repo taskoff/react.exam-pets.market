@@ -63,6 +63,15 @@
 .text {
     padding: 10px 0;
 }
+.btn-container {
+    margin-bottom: 30px;
+}
+.edit-btn,
+.del-btn {
+    padding: 10px 30px;
+    cursor: pointer;
+    margin-right: 20px;
+}
 
 .span {
     margin-left: 10px;

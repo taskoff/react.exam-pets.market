@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import Title from '../../../components/title/title';
 import Header from '../../../components/header/header';
 import Pic from '../../../components/image/image';
@@ -12,11 +12,13 @@ import updateMessages from '../../../untils/update-messages';
 const Details = ()=> {
 
     const [pet, setPet] = useState({})
-    const [creator, setCreator] = useState('')
-    const [comment, setComment] = useState('')
-    const [comments, setComments] = useState([])
+    const [creator, setCreator] = useState('');
+    const [comment, setComment] = useState('');
+    const [comments, setComments] = useState([]);
+    const [isAuthor, setIsAuthor] = useState(false);
     
-    const context = useContext(MyContext)
+    const context = useContext(MyContext);
+    const history = useHistory()
     const {id}  = useParams();
 
     const getInfo = async ()=>{
@@ -26,6 +28,10 @@ const Details = ()=> {
         setCreator(res.creator)
         const messages = res.messages.reverse()
         setComments(messages)
+        
+        if(res.creator === context.email) {
+            setIsAuthor(true);
+        }
     }
     const renderComments = ()=>{
         return comments.map((e, i)=>{
@@ -73,6 +79,10 @@ const Details = ()=> {
                                 <p className={styles.text}>{pet.description}</p>
                             </div>
                         </div>
+                       {isAuthor ? <div className={styles['btn-container']}>
+                            <button onClick={()=>history.push(`/private/edit/${id}`)} className={styles['edit-btn']}>Edit</button>
+                            <button className={styles['del-btn']}>Delete</button>
+                        </div> : null}
                         <div className={styles['comments-container']}>
                             <h3 className={styles['comments-title']}>Comments:</h3>
                             <div>
