@@ -7,7 +7,6 @@ const updateMessages = async (data, id)=>{
         body: JSON.stringify(data) ,
       })
       const res = await promise.json()
-      console.log(res)
 };
 
 export default updateMessages;

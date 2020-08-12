@@ -52,6 +52,10 @@ const Details = ()=> {
         await updateMessages(data, id);
         getInfo()
     }
+    const deletePet = async ()=>{
+        await fetch(`http://localhost:4000/delete/${id}`);
+        history.push('/');
+    }
        
     useEffect( ()=>{
        getInfo()
@@ -81,7 +85,7 @@ const Details = ()=> {
                         </div>
                        {isAuthor ? <div className={styles['btn-container']}>
                             <button onClick={()=>history.push(`/private/edit/${id}`)} className={styles['edit-btn']}>Edit</button>
-                            <button className={styles['del-btn']}>Delete</button>
+                            <button onClick={deletePet} className={styles['del-btn']}>Delete</button>
                         </div> : null}
                         <div className={styles['comments-container']}>
                             <h3 className={styles['comments-title']}>Comments:</h3>

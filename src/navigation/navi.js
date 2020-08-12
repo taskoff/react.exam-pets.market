@@ -28,21 +28,20 @@ class Navigation extends React.Component {
             <div >
             <BrowserRouter>
                 <Switch>
-                <Route path="/" exact component={!isLoggin ? NoLoginPage : HomePage} />
-                <Route path="/login" component={LoginPage} />
-                <Route path="/register" component={RegisterPage}/>
-                <Redirect from='/logout' to='/' />
-                <Route path="/dog" component={Dog}/>
-                <Route path="/cat" component={Cat}/>
-                <Route path="/fish" component={Fish}/>
-                <Route path="/rabbit" component={Rabbit}/>
-                <Route path="/other" component={Other}/>
-                <Route path="/private/add" component={AddPet}/>
-                <Route path="/private/edit/:id" component={EditPet}/>
-                <Route path="/private/my-pets" component={MyPets}/>
-                <Route path="/private" component={PrivateArea}/>
-                <Route path="/details/:id" component={Details}/>
-    
+                    <Route path="/" exact component={!isLoggin ? NoLoginPage : HomePage} />
+                    <Route path="/login" component={LoginPage} />
+                    <Route path="/register" component={RegisterPage}/>
+                    <Redirect from='/logout' to='/' />
+                    <Route path="/dog" component={Dog}/>
+                    <Route path="/cat" component={Cat}/>
+                    <Route path="/fish" component={Fish}/>
+                    <Route path="/rabbit" component={Rabbit}/>
+                    <Route path="/other" component={Other}/>
+                    <Route path="/details/:id" component={Details}/>
+                    <Route path="/private/add" component={AddPet}/>
+                    <Route path="/private/edit/:id" component={EditPet}/>
+                    <Route path="/private/my-pets" component={MyPets}/>
+                    <Route path="/private" component={PrivateArea}/>
                 </Switch>
             </BrowserRouter>
     

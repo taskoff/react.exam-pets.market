@@ -23,8 +23,8 @@ const {savePet, getOnePet, getMyPets} = require('../controllers/pet');
 
     router.get('/delete/:id', async (req, res)=>{
         const id = req.params.id;
-        await Pet.deleteOne({_id:id});
-        res.redirect('/');
+        const result = await Pet.deleteOne({_id:id});
+        res.send(result)
     })
     router.get('/my-pets/:id', async (req, res)=>{
         const id = req.params.id;
