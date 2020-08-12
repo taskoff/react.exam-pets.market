@@ -33,46 +33,64 @@ const Form = (props) => {
     const checkInputForErr = (e)=>{
         const value = e.target.value;
         const name = e.target.name;
+       
 
-        const objWithEmpty = {
-            email: ()=>setUserInputErr(true),
-            password: ()=>setPasswordInputErr(true)
+        // const objWithEmpty = {
+        //     email: ()=>setUserInputErr(true),
+        //     password: ()=>setPasswordInputErr(true)
+        // }
+
+        // const objWithNotEmpty = {
+        //     email: ()=>setUserInputErr(false),
+        //     password: ()=>setPasswordInputErr(false)
+        // }
+
+       
+        const obj = {
+            password: ()=>{checkPassLength()},
+            email: ()=>{emailCheck()}
         }
 
-        const objWithNotEmpty = {
-            email: ()=>setUserInputErr(false),
-            password: ()=>setPasswordInputErr(false)
-        }
+        obj[name]()
+       
 
-        const objWithNotLength = {
-            email: ()=>setUserLengthErr(true),
-            password: ()=>setPassLengthErr(true)
-        }
-        const objWithLength = {
-            email: ()=>setUserLengthErr(false),
-            password: ()=>setPassLengthErr(false)
-        }
+    }
 
-        if(value === ''){
-            objWithEmpty[name]();
+
+    const emailCheck = ()=>{
+        if(email===''){
+            setUserInputErr(true)
         } else {
-            objWithNotEmpty[name]();
+            setUserInputErr(false)
+            const v = email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+            if(!v){
+                setUserLengthErr(true);
+            } else {
+                setUserLengthErr(false);
+            }
         }
-        if(value.length < 3 && value.length > 0) {
-            objWithNotLength[name]();
-        } else {
-            objWithLength[name]();
-        }
+    }
 
+    const checkPassLength = ()=>{
+        if(password === ''){
+            setPasswordInputErr(true)
+        } else {
+             setPasswordInputErr(false)
+        }
+        if(password.length > 0 && password.length < 3) {
+            setPassLengthErr(true);
+        } else {
+            setPassLengthErr(false);
+        }
     }
 
     const rePassCheck = ()=>{
-        if(password !== repassword ) {
-            setRePassInputErr(true);
-        } else {
-            setRePassInputErr(false);
+            if(password !== repassword ) {
+                setRePassInputErr(true);
+            } else {
+                setRePassInputErr(false);
+            }
         }
-    }
     return (
         
         <div className={styles['form-box']}>
@@ -91,7 +109,7 @@ const Form = (props) => {
                             <InputError msg='Email is required' class='standart' />
                         </div> : null}
                         {userLengthErr? <div className={styles.error}>
-                            <InputError msg='Email must have min 3 simbols' class='standart' />
+                            <InputError msg='Email is Invalid!' class='standart' />
                         </div> : null}
                     </div>
 
@@ -125,7 +143,7 @@ const Form = (props) => {
                                 onBlur={rePassCheck}
                             />
                             {rePassInputErr? <div className={styles.error}>
-                                <InputError msg="RePassword don't mach" class='standart' />
+                                <InputError msg="RePassword don't match" class='standart' />
                             </div> : null}
 
                         </div>
