@@ -34,18 +34,6 @@ const Form = (props) => {
         const value = e.target.value;
         const name = e.target.name;
        
-
-        // const objWithEmpty = {
-        //     email: ()=>setUserInputErr(true),
-        //     password: ()=>setPasswordInputErr(true)
-        // }
-
-        // const objWithNotEmpty = {
-        //     email: ()=>setUserInputErr(false),
-        //     password: ()=>setPasswordInputErr(false)
-        // }
-
-       
         const obj = {
             password: ()=>{checkPassLength()},
             email: ()=>{emailCheck()}
