@@ -23,8 +23,13 @@ const Form = (props) => {
     const submitHandler = async (e)=>{
         e.preventDefault()
         if(!userInputErr && !userLengthErr && !passwordInputErr && !passLengthErr && !rePassInputErr && email && password){
-            const data = {email: email, password}
-                authication(data, context, history, props.path);
+            const data = {email: email, password,repassword}
+            try{
+
+                await authication(data, context, history, props.path);
+            } catch(e){
+                console.log(e)
+            }
         } else {
             alert('Email and Password are required!')
         }
@@ -144,7 +149,7 @@ const Form = (props) => {
                         </div>
                     </div> : null}
                     {!props.repass? <div>
-                       <button className={styles['submit-button']}>Sign Up</button>
+                       <button className={styles['submit-button']}>Sign In</button>
                        <div className={styles.alredy}>
                             <p > Don't have account? Then just
                             <span className={styles['form-link']}><Link to="/register">Sign-Up</Link>!</span>

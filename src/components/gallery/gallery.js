@@ -1,7 +1,8 @@
 import React from 'react';
 import Pic from '../image/image';
 import styles from './gallery.module.css';
-import BacgroundContext from '../../context/details-background';
+// import BacgroundContext from '../../context/details-background';
+import Loader from '../loader/loader';
 
 class ImgGallery extends React.Component {
     constructor(props) {
@@ -9,9 +10,10 @@ class ImgGallery extends React.Component {
 
         this.state ={
             images: [],
+            isLoading: false
         }
     }
-    static contextType = BacgroundContext;
+    // static contextType = BacgroundContext;
 
     componentDidMount(){
         this.getImages()
@@ -20,11 +22,8 @@ class ImgGallery extends React.Component {
         const {pet} = this.props
         const promise = await fetch(`http://localhost:4000/${pet}`)
         const images = await promise.json()
-        console.log(images)
-        this.setState({
-          images
-        })
-        
+        this.setState({images})
+        this.setState({isLoading: true})
       }
     renderImages(){
 
@@ -36,10 +35,16 @@ class ImgGallery extends React.Component {
     }
     render() {
         return (
-            
-                <div className={styles.gallery}>
-                    {this.renderImages()}
+                <div>
+                    {!this.state.isLoading ? <div>
+                        <Loader />
+                    </div> : null}
+
+                    {this.state.isLoading ? <div className={styles.gallery}>
+                        {this.renderImages()}
+                    </div> : null}
                 </div>
+            
            
         )
     }

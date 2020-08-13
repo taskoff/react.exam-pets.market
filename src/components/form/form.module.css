@@ -31,7 +31,7 @@
 .error {
     position: absolute;
     top: 100%;
-    left: 52%;
+    right: 80px;
     background-color: white;
     padding: 5px 10px;
 }

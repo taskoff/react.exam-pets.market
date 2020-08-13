@@ -78,7 +78,7 @@ const Details = ()=> {
                         <div className={styles['notice-container']}>
                             <Pic path={pet.imageUrl} type='details' class='no-click'/>
                             <div className={styles['details-box']}>
-                                <p className={styles.text}>Autor:<span span className={styles.span}>{creator }</span></p>
+                                <p className={styles.text}>Autor:<span className={styles.span}>{pet.creator }</span></p>
                                 <p className={styles.text}>Price:<span className={styles.span}>{pet.price}</span>$</p>
                                 <p className={styles.text}>{pet.description}</p>
                             </div>

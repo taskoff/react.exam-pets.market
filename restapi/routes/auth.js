@@ -7,7 +7,11 @@ const {getUserStatus, guestAccess} = require('../controllers/auth');
 
 router.post('/login', async (req, res)=>{
     console.log(req.body)
-    await loginUser(req, res);
+    try{
+        await loginUser(req, res);
+    }catch(e){
+       res.status(401).json({msg:'Wrong Email or Password!'})
+    }
 })
 
 
@@ -18,7 +22,7 @@ router.post('/register', async (req, res)=>{
         await registerUser(req, res)
     }catch(error){
         
-        console.log(error);
+        console.log("error:",error, 'end');
     }
 })
 

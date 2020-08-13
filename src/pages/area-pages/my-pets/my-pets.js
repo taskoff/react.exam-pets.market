@@ -5,6 +5,7 @@ import Header from '../../../components/header/header';
 import AreaMenu from '../../../components/menus/area-menu/area-menu';
 import Title from '../../../components/title/title';
 import Pic from '../../../components/image/image';
+import Loader from '../../../components/loader/loader';
 
 
 const MyPets = ()=>{
@@ -59,7 +60,11 @@ const MyPets = ()=>{
             <div>
                 <h3 className={styles['profile-title']}>Profile:<span>{context.email}</span> </h3>
             </div>
-            {isLoading ? <div>Loading....</div> : null}
+            {/* {isLoading ? <div>Loading....</div> : null} */}
+            {isLoading ? <div>
+                <Loader/>
+                </div>  : null}
+
             {!isLoading ? <div>
                 {isMyPets ? <div className={styles['img-container']}>
                     {myPetsRender()}

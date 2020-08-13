@@ -15,6 +15,8 @@ import AddPet from '../pages/area-pages/add-pet/addPet';
 import NoLoginPage from '../pages/no-login-home/no-login-page';
 import EditPet from '../pages/area-pages/edit-pet/edit-pet';
 import MyPets from '../pages/area-pages/my-pets/my-pets';
+import ErrorPage from '../pages/404/error';
+import Loader from '../components/loader/loader';
 
 class Navigation extends React.Component {
     constructor(props){
@@ -29,19 +31,22 @@ class Navigation extends React.Component {
             <BrowserRouter>
                 <Switch>
                     <Route path="/" exact component={!isLoggin ? NoLoginPage : HomePage} />
-                    <Route path="/login" component={LoginPage} />
-                    <Route path="/register" component={RegisterPage}/>
+                    <Route path="/login" component={!isLoggin ? LoginPage : HomePage} />
+                    <Route path="/register" component={!isLoggin ? RegisterPage : HomePage}/>
                     <Redirect from='/logout' to='/' />
-                    <Route path="/dog" component={Dog}/>
-                    <Route path="/cat" component={Cat}/>
-                    <Route path="/fish" component={Fish}/>
-                    <Route path="/rabbit" component={Rabbit}/>
-                    <Route path="/other" component={Other}/>
-                    <Route path="/details/:id" component={Details}/>
-                    <Route path="/private/add" component={AddPet}/>
-                    <Route path="/private/edit/:id" component={EditPet}/>
-                    <Route path="/private/my-pets" component={MyPets}/>
-                    <Route path="/private" component={PrivateArea}/>
+                    <Route path="/dog" component={isLoggin ? Dog : LoginPage}/>
+                    <Route path="/cat" component={isLoggin ? Cat : LoginPage}/>
+                    <Route path="/fish" component={isLoggin ? Fish : LoginPage}/>
+                    <Route path="/rabbit" component={isLoggin ? Rabbit : LoginPage}/>
+                    <Route path="/other" component={isLoggin ? Other : LoginPage}/>
+                    <Route path="/details/:id" component={isLoggin ? Details : LoginPage}/>
+                    <Route path="/private/add" component={isLoggin ? AddPet : LoginPage}/>
+                    <Route path="/private/edit/:id" component={isLoggin ? EditPet : LoginPage}/>
+                    <Route path="/private/my-pets" component={isLoggin ? MyPets : LoginPage}/>
+                    <Route path="/private" component={isLoggin ? PrivateArea : LoginPage}/>
+                    <Route path="/loader" component={Loader}/>
+
+                    <Route component={ErrorPage} />
                 </Switch>
             </BrowserRouter>
     

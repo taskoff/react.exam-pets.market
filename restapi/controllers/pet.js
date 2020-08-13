@@ -20,7 +20,6 @@ const savePet  = async (req, res)=>{
 // }
 const getPets = async (pet)=>{
     const pets = await Pet.find({type: `${pet}`}).lean();
-    // const ordPlays = plays.sort((a,b)=> b.usersLiked.length - a.usersLiked.length)
     return pets;
 }
 

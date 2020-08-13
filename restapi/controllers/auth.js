@@ -18,29 +18,28 @@ const registerUser = async (req, res)=> {
     const {
         email,
         password,
-        repeatPassword
+        repassword
         } = req.body ;
     
-        // if (password !== repeatPassword) {
-        //   // res.redirect('user/register',{
-        //   //   error: 'Repead Password not match'
-        //   // });
-        //   alert('ERROR');
-        //   return
-        // }
+        if (password !== repassword) {
+          
+          return
+        }
         
         bcrypt.genSalt(10, function (err, salt){
         bcrypt.hash(password, salt, async function(err, hash){
             try{
                 const user = await new User({email, password:hash}).save();
-               
+                console.log(user)
                 const userId = user._id;
                 const token = generateToken({email, userId})
                 res.header("Authorization", token).send(user);
                
                
             } catch(error){
-               
+              if(error.code === 11000){
+                res.status(409).json({msg:'This email is already registered!'})
+              }
                 return
             }
             
@@ -52,14 +51,20 @@ const registerUser = async (req, res)=> {
 
 const loginUser = async (req, res)=>{
     const {email, password} = req.body;
-    const user = await User.findOne({email});
-    const status = await bcrypt.compare(password, user.password);
-    if (status) {
-        const userId = user._id
-        const token = generateToken({ email, userId })
-        res.header("Authorization", token).send(user);
-        
-    }
+    
+
+      const user = await User.findOne({email});
+      const status = await bcrypt.compare(password, user.password);
+      
+      if (status) {
+          const userId = user._id
+          const token = generateToken({ email, userId })
+          res.header("Authorization", token).send(user);
+        }
+    
+          
+      
+
 }
 
 const getUserStatus = (req, res, next) => {
