@@ -10,7 +10,9 @@ const HomePage = ()=>{
         <Header />
         <SecondMenu type="home-menu"/>
         <Title title="Choose Category!"/>
-
+            <div className={styles['home-img-container']}>
+                <img src="images/home-m.png" alt="" />
+            </div>
         </div>
     )
 }

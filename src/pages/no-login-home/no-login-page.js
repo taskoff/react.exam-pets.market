@@ -15,6 +15,9 @@ const NoLoginPage = ()=>{
                 <p>To see our market</p>
                 <p>Just <Link to="/login" className={styles.action} >Login</Link>  or <Link to="/register" className={styles.action} >Register</Link></p>
             </div>
+            <div className={styles['home-img-container']}>
+                <img src="images/home.png" alt="" />
+            </div>
         </div>
     )
 }
