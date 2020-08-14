@@ -1,7 +1,6 @@
 import React from 'react';
 import Pic from '../image/image';
 import styles from './gallery.module.css';
-// import BacgroundContext from '../../context/details-background';
 import Loader from '../loader/loader';
 
 class ImgGallery extends React.Component {
@@ -13,7 +12,6 @@ class ImgGallery extends React.Component {
             isLoading: false
         }
     }
-    // static contextType = BacgroundContext;
 
     componentDidMount(){
         this.getImages()

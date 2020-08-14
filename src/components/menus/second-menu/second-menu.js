@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
 import styles from './second-menu.module.css';
 import MenuLink from '../../link/link';
 

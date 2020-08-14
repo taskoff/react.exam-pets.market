@@ -1,12 +1,14 @@
 .img-btn {
-    padding: 10px 5px;
+    padding: 10px 2px;
     text-decoration: none;
     /* background-color: chocolate; */
     color: rgb(60,60,60);
-    font-size: 1.2em;
-    box-shadow: 0 0 3px black;
+    font-size: 1.1em;
+    /* box-shadow: 0 0 3px black; */
     border-radius: 3px;
     margin-left: 10px;
+    cursor: pointer;
+    /* background-color: ; */
 }
 .img-btn:hover {
     box-shadow: 0 0 10px black;

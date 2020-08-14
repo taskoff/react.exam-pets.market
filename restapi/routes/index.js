@@ -23,5 +23,9 @@ const { route } = require('./play');
       const cats = await getPets('Rabbit');
       res.send(cats)
    })
+   router.get('/other', async (req, res)=>{
+      const cats = await getPets('Other');
+      res.send(cats)
+   })
 
 module.exports = router;

@@ -6,13 +6,12 @@ import Pic from '../../../components/image/image';
 import styles from './details.module.css';
 import SecondMenu from '../../../components/menus/second-menu/second-menu';
 import MyContext from '../../../context/context';
-import getPetInfo from '../../../untils/get-pet-details';
+import getPetInfo from '../../../untils/pets/get-pet-details';
 import updateMessages from '../../../untils/update-messages';
 
 const Details = ()=> {
 
     const [pet, setPet] = useState({})
-    const [creator, setCreator] = useState('');
     const [comment, setComment] = useState('');
     const [comments, setComments] = useState([]);
     const [isAuthor, setIsAuthor] = useState(false);
@@ -25,7 +24,6 @@ const Details = ()=> {
         const res =  await getPetInfo(id);
         console.log(res)
         setPet(res);
-        setCreator(res.creator)
         const messages = res.messages.reverse()
         setComments(messages)
         

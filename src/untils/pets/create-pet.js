@@ -1,9 +1,9 @@
-import getCookie from './coockie';
+import getCookie from '../auth/coockie';
 
-const editPet = async (data, petId)=>{
+const cteatePet = async (data)=>{
     try {
     
-        const promise = await fetch(`http://localhost:4000/edit/${petId}`, {
+        const promise = await fetch('http://localhost:4000/create', {
          method: 'POST',
          headers: {
              'Content-Type': 'application/json',
@@ -19,4 +19,4 @@ const editPet = async (data, petId)=>{
     }
 }
 
-export default editPet
+export default cteatePet

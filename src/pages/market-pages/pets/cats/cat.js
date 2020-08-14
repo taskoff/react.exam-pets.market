@@ -1,9 +1,7 @@
 import React from 'react';
 import Header from '../../../../components/header/header';
-import Title from '../../../../components/title/title';
 import styles from './cat.module.css';
 import TitleWithImg from '../../../../components/page-title/page-title';
-import Footer from '../../../../components/footer/footer';
 import ImgGallery from '../../../../components/gallery/gallery';
 import SecondMenu from '../../../../components/menus/second-menu/second-menu';
 
@@ -19,7 +17,6 @@ const Cat = ()=>{
             </div>
             <ImgGallery pet={'cat'} type="gallery" pet='cat'/>
 
-            {/* <Footer /> */}
         </div>
     )
 }

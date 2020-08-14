@@ -1,5 +1,4 @@
 import React from 'react';
-import {useContext} from 'react';
 import styles from './image.module.css';
 import { Link } from 'react-router-dom';
 import MyContext from '../../context/context';

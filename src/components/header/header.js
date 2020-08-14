@@ -17,7 +17,6 @@ class Header extends React.Component{
                 {isLoggin ? <Link to="/" className={styles.link}>Pets Store</Link> : null}
                 {!isLoggin ? <Link to="/login" className={styles.link}>Login</Link> : null}
                 {!isLoggin ? <Link to="/register" className={styles.link}>Register</Link> : null}
-                {/* {this.context.isLoggin ? <Link to="/logout" className={styles.link}>Logout</Link> : null} */}
                 {isLoggin ? <Link to="/private" className={styles.link}>Private area</Link> : null}
 
         

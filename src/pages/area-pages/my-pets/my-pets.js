@@ -60,7 +60,6 @@ const MyPets = ()=>{
             <div>
                 <h3 className={styles['profile-title']}>Profile:<span>{context.email}</span> </h3>
             </div>
-            {/* {isLoading ? <div>Loading....</div> : null} */}
             {isLoading ? <div>
                 <Loader/>
                 </div>  : null}
@@ -79,4 +78,3 @@ const MyPets = ()=>{
 
 export default MyPets;
 
-{/* <Pic path={pet.imageUrl} type='details' class='no-click'/> */}

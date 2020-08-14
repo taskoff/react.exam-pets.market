@@ -7,7 +7,7 @@ const ErrorPage = ()=>{
         <div>
             <Header />
             <div className={styles['error-page-container']}>
-                <img src="images/404.png"/>
+                <img src="images/404.png" alt=''/>
             </div>
         </div>
     )

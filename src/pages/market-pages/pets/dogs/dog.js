@@ -3,7 +3,6 @@ import Header from '../../../../components/header/header';
 import styles from './dog.module.css'
 import TitleWithImg from '../../../../components/page-title/page-title';
 import ImgGallery from '../../../../components/gallery/gallery';
-import Footer from '../../../../components/footer/footer';
 import SecondMenu from '../../../../components/menus/second-menu/second-menu';
 
 class Dog extends React.Component {
@@ -21,7 +20,6 @@ class Dog extends React.Component {
                     </div>
                     <ImgGallery pet={'dog'} type="gallery"/>
                 </div>
-                {/* <Footer /> */}
             </div>
         )
     }

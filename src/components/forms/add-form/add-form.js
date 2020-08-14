@@ -1,11 +1,11 @@
 import React, {useContext, useState, useEffect} from 'react';
-import  {useHistory, useParams, Link} from 'react-router-dom';
+import  {useHistory, useParams} from 'react-router-dom';
 import Input from '../../../components/Input/input';
 import styles from './add-form.module.css';
 import MyContext from '../../../context/context';
-import createPet from '../../../untils/create-pet';
-import getPetInfo from '../../../untils/get-pet-details';
-import editPet from '../../../untils/edit-pet';
+import createPet from '../../../untils/pets/create-pet';
+import getPetInfo from '../../../untils/pets/get-pet-details';
+import editPet from '../../../untils/pets/edit-pet';
 import ImageBtn from '../../buttons/add-img-btn/image-btn';
 import Image from '../../image/image';
 
@@ -14,7 +14,6 @@ const PetForm = ({isEdit})=> {
     const [price, setPrice] = useState('');
     const [type, setType] = useState('');
     const [description, setDescription] = useState('');
-    // const [pet, setPet] = useState({})
     const {id}  = useParams();
 
     const history = useHistory();
@@ -49,7 +48,8 @@ const PetForm = ({isEdit})=> {
             }            
         }
 
-        const uploadImage = ()=>{
+        const uploadImage = (e)=>{
+            e.preventDefault()
             const widget = window.cloudinary.createUploadWidget({
                 cloudName: 'dxt2tu7ic',
                 uploadPreset: 'nq3dvifv'
@@ -65,24 +65,6 @@ const PetForm = ({isEdit})=> {
         const deleteImage = ()=>{
             setImageUrl('');
         }
-        // const publicId = 'tod9cqsamfrr2th0fru9';
-        // const resourceType = 'image';
-        // function deleteImage(publicId,resourceType,callback){ 
-        //     console.log(resourceType);//image,video,raw
-        
-        //     window.cloudinary.api.delete_resources(publicId, function(result) {
-        //         console.log(result);
-        //          if(result.hasOwnProperty("error")){
-        //              callback(result);
-        //              return;
-        //          }else{
-        //               callback(result);
-        
-        //          }  
-        //     },{all:true,resource_type:resourceType});   
-        // }
-
-            // http://res.cloudinary.com/dxt2tu7ic/image/upload/v1597399447/tod9cqsamfrr2th0fru9.jpg
 
         useEffect(()=>{
             getInfo();
@@ -93,7 +75,6 @@ const PetForm = ({isEdit})=> {
                 
                 <div className={styles['form-box']}>
                     <form onSubmit={submitHandler} className={styles['add-form']}>
-                         {/* <Link onClick={deleteImage} >Delete</Link> */}
                         <div className={styles['image-cotainer']}>
                             <Image path={imageUrl}  type="gallery" class='no-click'/>
                             <div className={styles['img-btn-box']}>
@@ -132,7 +113,7 @@ const PetForm = ({isEdit})=> {
                              />
                         <div className={styles['form-textarea-box']}>
                             <div className={styles['textarea-label']}>
-                                <label for="pet-description">Description</label>
+                                <label htmlFor="pet-description">Description</label>
                             </div>
                             <div >
                                 <textarea 

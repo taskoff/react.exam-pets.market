@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext} from 'react';
 import {useHistory} from 'react-router-dom';
 import styles from './form.module.css'
-import Input from '../Input/input';
-import InputError from '../input-error/input-error';
+import Input from '../../Input/input';
+import InputError from '../../input-error/input-error';
 import { Link } from 'react-router-dom';
-import MyContext from '../../context/context';
-import authication from '../../untils/auth';
+import MyContext from '../../../context/context';
+import authication from '../../../untils/auth/auth';
 
 
 const Form = (props) => { 
