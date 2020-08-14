@@ -22,6 +22,16 @@
     padding-right: 20px;
     margin-left: 20px;
 }
+.image-cotainer {
+    display: flex;
+    align-items: flex-end;
+    margin: 20px 0;
+    padding-right: 20px;
+    margin-left: 20px;
+}
+.img-btn-box {
+    margin-bottom: 10px;
+}
 .form-select {
     min-width: 400px;
     line-height: 1.8em;
