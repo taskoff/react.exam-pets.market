@@ -13,9 +13,9 @@ const Cat = ()=>{
             <SecondMenu />
                
             <div >
-            <TitleWithImg path1="/images/cat.png" path2="/images/cat2.png" type="img" title="Cats Page" />
+            <TitleWithImg path1="/images/cat.png"  type="img" title="Cats Page" />
             </div>
-            <ImgGallery pet={'cat'} type="gallery" pet='cat'/>
+            <ImgGallery pet={'cat'} type="gallery"/>
 
         </div>
     )

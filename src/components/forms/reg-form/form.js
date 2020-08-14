@@ -6,6 +6,7 @@ import InputError from '../../input-error/input-error';
 import { Link } from 'react-router-dom';
 import MyContext from '../../../context/context';
 import authication from '../../../untils/auth/auth';
+import ImageBtn from '../../buttons/add-img-btn/image-btn';
 
 
 const Form = (props) => { 
@@ -141,7 +142,8 @@ const Form = (props) => {
 
                         </div>
 
-                        <button className={styles['submit-button']}>Sign Up</button>
+                        {/* <button className={styles['submit-button']}>Sign Up</button> */}
+                        <ImageBtn value='Sign Up' class= 'form-btn'/ >
                        <div className={`${styles.alredy} ${styles[props.repass]}}`}>
                             <p > Alredy have account? Then just
                             <span className={styles['form-link']}><Link to="/login">Sign-In</Link>!</span>
@@ -149,7 +151,9 @@ const Form = (props) => {
                         </div>
                     </div> : null}
                     {!props.repass? <div>
-                       <button className={styles['submit-button']}>Sign In</button>
+                       {/* <button className={styles['submit-button']}>Sign In</button> */}
+                       <ImageBtn value='Sign In' class= 'form-btn'/ >
+
                        <div className={styles.alredy}>
                             <p > Don't have account? Then just
                             <span className={styles['form-link']}><Link to="/register">Sign-Up</Link>!</span>

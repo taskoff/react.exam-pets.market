@@ -30,7 +30,7 @@ const PetForm = ({isEdit})=> {
                 } else {
                     const promise = await editPet(data, id);
                 }
-                history.push('/')
+                history.push(`/${type}`)
 
             } else {
                 alert('All Inputs are required!')
@@ -78,8 +78,8 @@ const PetForm = ({isEdit})=> {
                         <div className={styles['image-cotainer']}>
                             <Image path={imageUrl}  type="gallery" class='no-click'/>
                             <div className={styles['img-btn-box']}>
-                                {!imageUrl ? <ImageBtn onClick={uploadImage} value="Add Image"/> : null}
-                                {imageUrl ? <ImageBtn onClick={deleteImage} value="Delete Image"/> : null}
+                                {!imageUrl ? <ImageBtn onClick={uploadImage} value="Add Image" class="img-btn" /> : null}
+                                {imageUrl ? <ImageBtn onClick={deleteImage} value="Delete Image" class="img-btn" /> : null}
                             </div>
                         </div>
                         <div className={styles['form-select-box']}>
@@ -97,13 +97,6 @@ const PetForm = ({isEdit})=> {
                             </select>
                         </div>
                         
-                        {/* <Input 
-                            value={imageUrl} 
-                            label="ImageUrl" 
-                            type="text" 
-                            name="imageurl"
-                            onChange={e=>setImageUrl(e.target.value)} 
-                            /> */}
                         <Input 
                             value={price}
                             label="Price" 
@@ -125,10 +118,12 @@ const PetForm = ({isEdit})=> {
                             </div>
                         </div>
                         {!isEdit ? <div className={styles['submit-btn-box']}>
-                            <button className={styles['submit-btn']}>Add Pet</button>
+                            {/* <button className={styles['submit-btn']}>Add Pet</button> */}
+                            <ImageBtn value='Add Pet' class='form-btn'/>
                         </div> : null}
-                        {isEdit ? <div className={styles['edit-btn-box']}>
-                                        <button className={styles['submit-btn']}>Edit Pet</button>
+                        {isEdit ? <div className={styles['submit-btn-box']}>
+                                        {/* <button className={styles['submit-btn']}>Edit Pet</button> */}
+                                    <ImageBtn value='Edit Pet' class='form-btn'/>
                                 </div>  :null}
                     </form>
                 </div>

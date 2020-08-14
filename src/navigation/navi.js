@@ -44,8 +44,6 @@ class Navigation extends React.Component {
                     <Route path="/private/edit/:id" component={isLoggin ? EditPet : LoginPage}/>
                     <Route path="/private/my-pets" component={isLoggin ? MyPets : LoginPage}/>
                     <Route path="/private" component={isLoggin ? PrivateArea : LoginPage}/>
-                    <Route path="/loader" component={Loader}/>
-
                     <Route component={ErrorPage} />
                 </Switch>
             </BrowserRouter>

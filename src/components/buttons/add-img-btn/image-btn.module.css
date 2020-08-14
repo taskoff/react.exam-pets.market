@@ -1,5 +1,20 @@
+.form-btn {
+    padding: 7px 10px;
+    text-decoration: none;
+    /* background-color: chocolate; */
+    color: rgb(60,60,60);
+    font-size: 1em;
+    /* box-shadow: 0 0 3px black; */
+    border-radius: 3px;
+    margin-left: 20px;
+    cursor: pointer;
+    /* background-color: white; */
+}
+.form-btn:hover {
+    box-shadow: 0 0 5px black;
+}
 .img-btn {
-    padding: 10px 2px;
+    padding: 5px 2px;
     text-decoration: none;
     /* background-color: chocolate; */
     color: rgb(60,60,60);
