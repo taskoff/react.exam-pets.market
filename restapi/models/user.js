@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        minlength: 3
+        minlength: 5
     },
     password: {
         type: String,
@@ -18,11 +18,6 @@ const userSchema = new mongoose.Schema({
     }]
     
 })
-// userSchema.path('username').validate(function(v) {
-//     return v.match(/^[a-zA-Z0-9]*$/) ;
-//   }, );
-// userSchema.path('password').validate(function(v) {
-//   return v.match(/^[a-zA-Z0-9]*$/) ;
-// }, );
+
 
 module.exports = mongoose.model('User', userSchema)

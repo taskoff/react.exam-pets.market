@@ -31,6 +31,8 @@ const PetForm = ({isEdit})=> {
                 }
                 history.push('/')
 
+            } else {
+                alert('All Inputs are required!')
             }
         }
        
@@ -38,7 +40,6 @@ const PetForm = ({isEdit})=> {
             if(id){
                     const res =  await getPetInfo(id);
                     console.log(res)
-                    // setPet(res);
                     setType(res.type);
                     setImageUrl(res.imageUrl);
                     setPrice(res.price);

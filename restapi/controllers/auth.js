@@ -30,7 +30,6 @@ const registerUser = async (req, res)=> {
         bcrypt.hash(password, salt, async function(err, hash){
             try{
                 const user = await new User({email, password:hash}).save();
-                console.log(user)
                 const userId = user._id;
                 const token = generateToken({email, userId})
                 res.header("Authorization", token).send(user);
@@ -39,6 +38,8 @@ const registerUser = async (req, res)=> {
             } catch(error){
               if(error.code === 11000){
                 res.status(409).json({msg:'This email is already registered!'})
+              } else {
+                res.status(500).json({msg:''})
               }
                 return
             }
@@ -55,11 +56,12 @@ const loginUser = async (req, res)=>{
 
       const user = await User.findOne({email});
       const status = await bcrypt.compare(password, user.password);
-      
       if (status) {
           const userId = user._id
           const token = generateToken({ email, userId })
           res.header("Authorization", token).send(user);
+        }else{
+          res.status(401).json({msg:'Wrong Email or Password!'})
         }
     
           
@@ -84,13 +86,13 @@ const getUserStatus = (req, res, next) => {
     next()
   }
 
-const guestAccess = (req, res, next) => {
-    const token = req.cookies['uinfo']
-    if (token) {
-      return res.redirect('/')
-    }
-    next()
-  }
+// const guestAccess = (req, res, next) => {
+//     const token = req.cookies['uinfo']
+//     if (token) {
+//       return res.redirect('/')
+//     }
+//     next()
+//   }
 // const authAccess = (req, res, next) => {
 //     const token = req.cookies['uinfo']
 //     if (!token) {
@@ -103,6 +105,6 @@ module.exports ={
     getUserStatus,
     loginUser,
     verifyToken,
-    guestAccess,
+    // guestAccess,
     // authAccess
 }
