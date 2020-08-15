@@ -13,7 +13,6 @@ const {savePet, getOnePet, getMyPets} = require('../controllers/pet');
     })
     router.get('/details/:id' ,  async (req, res)=>{
        
-            console.log
             const id = req.params.id;
             // const obj = verifyToken(req, res);
             const pet = await getOnePet(id);
@@ -29,7 +28,6 @@ const {savePet, getOnePet, getMyPets} = require('../controllers/pet');
     router.get('/my-pets/:id', async (req, res)=>{
         const id = req.params.id;
         const user = req.headers.username;
-        console.log(user)
         const myPets = await getMyPets(user);
         res.send(myPets);
     })
@@ -51,18 +49,14 @@ const {savePet, getOnePet, getMyPets} = require('../controllers/pet');
     router.post('/edit/:id',async (req, res)=>{
         const id = req.params.id;
         const {type, description, imageUrl, price} = req.body;
-        console.log(id)
         const pet = await Pet.findByIdAndUpdate(id, { "$set": {type, description, imageUrl, price} });
         res.send(pet)
      })
 
     router.post('/message/:id',async (req, res)=>{
         const id = req.params.id;
-        console.log(req.body)
         const message = req.body;
-        // const pet = await Pet.findByIdAndUpdate(id, { "$set": {type, description, imageUrl, price} });
         const pet = await Pet.findByIdAndUpdate(id, { $addToSet:{messages: [message]} });
-        console.log(pet)
         res.send(pet);
     })
      

@@ -23,7 +23,6 @@ const Details = ()=> {
 
     const getInfo = async ()=>{
         const res =  await getPetInfo(id);
-        console.log(res)
         setPet(res);
         const messages = res.messages.reverse()
         setComments(messages)

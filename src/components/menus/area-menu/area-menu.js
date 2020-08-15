@@ -7,7 +7,6 @@ import MyContext from '../../../context/context';
 const AreaMenu = ({ type })=>{
     const context = useContext(MyContext);
     const logOut = ()=>{
-        console.log(context)
         context.logOut()
     }
     return (

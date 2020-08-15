@@ -25,7 +25,6 @@ class Navigation extends React.Component {
     static contextType = MyContext;
     render (){
         const {isLoggin} = this.context;
-        console.log(isLoggin)
         return (
             <div >
             <BrowserRouter>

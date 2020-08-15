@@ -6,7 +6,6 @@ const {registerUser, loginUser} = require('../controllers/auth');
 
 
 router.post('/login', async (req, res)=>{
-    console.log(req.body)
     try{
         await loginUser(req, res);
     }catch(e){

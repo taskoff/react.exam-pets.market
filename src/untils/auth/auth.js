@@ -8,13 +8,11 @@ const authication = async (data, context, history, path)=>{
          },
          body: JSON.stringify(data) ,
        })
-       console.log(promise)
        const res = await promise.json()
        if(promise.status > 300 && promise.status < 500){
           alert(res.msg);
           return;
        }else if(promise.status>=500){
-           console.log('hiiiiiiiiiii')
            history.push('/2')
            return
        }

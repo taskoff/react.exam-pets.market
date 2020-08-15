@@ -19,7 +19,6 @@ const MyPets = ()=>{
     
 
     const getMyPets = async ()=> {
-        console.log(context.id)
         const promise = await fetch(`http://localhost:4000/my-pets/${context.id}`, {
             method: 'GET',
             headers: {
@@ -29,7 +28,6 @@ const MyPets = ()=>{
            
           });
         const res = await promise.json(); 
-        console.log(res)
         setMyPets(res);
         setIsLoading(false);
         if(res.length>0){

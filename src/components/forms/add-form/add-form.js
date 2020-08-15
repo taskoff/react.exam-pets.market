@@ -40,7 +40,6 @@ const PetForm = ({isEdit})=> {
         const getInfo = async ()=>{
             if(id){
                     const res =  await getPetInfo(id);
-                    console.log(res)
                     setType(res.type);
                     setImageUrl(res.imageUrl);
                     setPrice(res.price);
@@ -56,7 +55,6 @@ const PetForm = ({isEdit})=> {
     
             }, (error, result)=>{
                 if(result.event === 'success'){
-                    console.log(result.info.url)
                     setImageUrl(result.info.url)
                 }
             });
