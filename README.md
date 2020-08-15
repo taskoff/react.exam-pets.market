@@ -1,5 +1,5 @@
 # Pets Market 
-## SPA for selling pets
+## SPA for Announcements selling or free pets
 
 ## Project setup:
 ### npm install
