@@ -15,7 +15,7 @@
 ## Application structure
 ## Public part
 ### Home page
-![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/readme-img/no-login-home.jpg)
+![alt text](https://raw.githubusercontent.com/taskoff/react.exam-pets.market/master/readme-img/no-login-home.jpg)
 ### Login page
 
 ### Register Page
