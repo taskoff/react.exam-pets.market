@@ -94,7 +94,7 @@ const Details = ()=> {
                                 </div>
                                 <div>
                                     {/* <button onClick={commentSubmit} className={styles['comment-button']}>Send</button> */}
-                                <ImageBtn value='Send' onClick={deletePet} class='form-btn'/>
+                                <ImageBtn value='Send' onClick={commentSubmit} class='form-btn'/>
 
                                 </div>
                             </div>
