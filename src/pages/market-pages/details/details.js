@@ -8,6 +8,7 @@ import SecondMenu from '../../../components/menus/second-menu/second-menu';
 import MyContext from '../../../context/context';
 import getPetInfo from '../../../untils/pets/get-pet-details';
 import updateMessages from '../../../untils/update-messages';
+import ImageBtn from '../../../components/buttons/add-img-btn/image-btn';
 
 const Details = ()=> {
 
@@ -82,8 +83,9 @@ const Details = ()=> {
                             </div>
                         </div>
                        {isAuthor ? <div className={styles['btn-container']}>
-                            <button onClick={()=>history.push(`/private/edit/${id}`)} className={styles['edit-btn']}>Edit</button>
-                            <button onClick={deletePet} className={styles['del-btn']}>Delete</button>
+                            <ImageBtn value='Edit' class='form-btn' onClick={()=>history.push(`/private/edit/${id}`)} />
+                            <ImageBtn value='Delete' onClick={deletePet} class='form-btn'/>
+
                         </div> : null}
                         <div className={styles['comments-container']}>
                             <h3 className={styles['comments-title']}>Comments:</h3>
@@ -92,7 +94,9 @@ const Details = ()=> {
                                     <textarea value={comment} onChange={(e)=>{setComment(e.target.value)}} className={styles['comment-text']}></textarea>
                                 </div>
                                 <div>
-                                    <button onClick={commentSubmit} className={styles['comment-button']}>Send</button>
+                                    {/* <button onClick={commentSubmit} className={styles['comment-button']}>Send</button> */}
+                                <ImageBtn value='Send' onClick={deletePet} class='form-btn'/>
+
                                 </div>
                             </div>
                             <div className={styles['comment-box']}>

@@ -142,16 +142,16 @@ const Form = (props) => {
 
                         </div>
 
-                        {/* <button className={styles['submit-button']}>Sign Up</button> */}
-                        <ImageBtn value='Sign Up' class= 'form-btn'/ >
-                       <div className={`${styles.alredy} ${styles[props.repass]}}`}>
-                            <p > Alredy have account? Then just
-                            <span className={styles['form-link']}><Link to="/login">Sign-In</Link>!</span>
-                            </p>
+                        <div className={styles['btn-container']}>
+                            <ImageBtn value='Sign Up' class= 'form-btn'/ >
+                            <div className={`${styles.alredy} ${styles[props.repass]}}`}>
+                                <p > Alredy have account? Then just
+                                <span className={styles['form-link']}><Link to="/login">Sign-In</Link>!</span>
+                                </p>
+                            </div>
                         </div>
                     </div> : null}
-                    {!props.repass? <div>
-                       {/* <button className={styles['submit-button']}>Sign In</button> */}
+                    {!props.repass? <div className={styles['btn-container']}>
                        <ImageBtn value='Sign In' class= 'form-btn'/ >
 
                        <div className={styles.alredy}>

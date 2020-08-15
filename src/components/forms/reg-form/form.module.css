@@ -35,7 +35,9 @@
     background-color: white;
     padding: 5px 10px;
 }
-
+.btn-container {
+    padding-left: 20px;
+}
 .hiden {
     display: none;
 }
