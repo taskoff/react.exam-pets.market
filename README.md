@@ -2,6 +2,9 @@
 ## SPA for Announcements selling or free pets
 
 ## Project setup:
+### restapi 
+### npm install
+### main dir
 ### npm install
 
 ## Compiles for development:

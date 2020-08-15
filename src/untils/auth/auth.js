@@ -1,3 +1,4 @@
+import errorHandler from '../error-handler';
 
 const authication = async (data, context, history, path)=>{
     try {
@@ -9,18 +10,15 @@ const authication = async (data, context, history, path)=>{
          body: JSON.stringify(data) ,
        })
        const res = await promise.json()
-       if(promise.status > 300 && promise.status < 500){
-          alert(res.msg);
-          return;
-       }else if(promise.status>=500){
-           history.push('/2')
-           return
+       const err = errorHandler(promise, res, history);
+   
+       if(!err){
+           const authToken = promise.headers.get('Authorization');
+           document.cookie = `x-auth-token=${authToken}`;
+           context.loginIn(res.email, res._id);
+           history.push('/')
+
        }
-    //    const res = await promise.json()
-       const authToken = promise.headers.get('Authorization');
-       document.cookie = `x-auth-token=${authToken}`;
-       context.loginIn(res.email, res._id);
-       history.push('/')
 
     } catch (e){
         console.log(e)

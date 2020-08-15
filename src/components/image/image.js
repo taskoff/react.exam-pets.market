@@ -11,7 +11,7 @@ const Pic = (props)=>{
             {({setDetailsBackground})=> <Link className={styles[props.class]} to={`/details/${props.id}`} onClick={()=>setDetailsBackground(props.pet)}>
                 <div className={styles[`img-box-${props.type}`]}>
 
-                        <img className={styles[`gallery-img-${props.type}`]} src={props.path}></img>
+                        <img className={styles[`gallery-img-${props.type}`]} src={props.path} alt=''></img>
                         {props.isGallery ? <div className={styles['price-box']}>{props.price==='0'?'Free':props.price}$</div> : null}
                 </div>
             </Link>}

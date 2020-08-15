@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState,  useContext} from 'react';
 import {useHistory} from 'react-router-dom';
 import styles from './form.module.css'
 import Input from '../../Input/input';
@@ -37,7 +37,6 @@ const Form = (props) => {
     }
 
     const checkInputForErr = (e)=>{
-        const value = e.target.value;
         const name = e.target.name;
        
         const obj = {

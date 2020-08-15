@@ -8,12 +8,15 @@ import getPetInfo from '../../../untils/pets/get-pet-details';
 import editPet from '../../../untils/pets/edit-pet';
 import ImageBtn from '../../buttons/add-img-btn/image-btn';
 import Image from '../../image/image';
+import InputError from '../../input-error/input-error';
 
 const PetForm = ({isEdit})=> {
     const [imageUrl, setImageUrl] = useState('');
     const [price, setPrice] = useState('');
     const [type, setType] = useState('');
     const [description, setDescription] = useState('');
+    const [priceErr, setPriceErr] = useState(false);
+
     const {id}  = useParams();
 
     const history = useHistory();
@@ -23,7 +26,7 @@ const PetForm = ({isEdit})=> {
         const submitHandler = async (e)=>{
             e.preventDefault()
             const creator = context.email
-            if(price && description && imageUrl && type){
+            if(price && description && imageUrl && type && !priceErr){
                 const data = {price, description, imageUrl, type, creator};
                 if(!isEdit){
                     const promise = await createPet(data);
@@ -63,6 +66,15 @@ const PetForm = ({isEdit})=> {
         const deleteImage = ()=>{
             setImageUrl('');
         }
+        const checkPrice = ()=>{
+            const v = price.match(/[0-9]+/);
+            if(!v){
+                setPriceErr(true)
+            } else {
+                setPriceErr(false)
+            }
+
+        }
 
         useEffect(()=>{
             getInfo();
@@ -101,7 +113,11 @@ const PetForm = ({isEdit})=> {
                             type="text" 
                             name="price"
                             onChange={e=>setPrice(e.target.value)}
+                            onBlur={checkPrice}
                              />
+                        {priceErr? <div className={styles.error}>
+                            <InputError msg='Price must be a number!' class='standart' />
+                        </div> : null}
                         <div className={styles['form-textarea-box']}>
                             <div className={styles['textarea-label']}>
                                 <label htmlFor="pet-description">Description</label>

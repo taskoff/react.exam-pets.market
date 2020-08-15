@@ -16,7 +16,6 @@ import NoLoginPage from '../pages/no-login-home/no-login-page';
 import EditPet from '../pages/area-pages/edit-pet/edit-pet';
 import MyPets from '../pages/area-pages/my-pets/my-pets';
 import ErrorPage from '../pages/404/error';
-import Loader from '../components/loader/loader';
 
 class Navigation extends React.Component {
     constructor(props){
