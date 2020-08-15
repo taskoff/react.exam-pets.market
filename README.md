@@ -17,8 +17,10 @@
 ### Home page
 ![alt text](https://raw.githubusercontent.com/taskoff/react.exam-pets.market/master/readme-img/no-login-home.jpg)
 ### Login page
+![alt text](https://raw.githubusercontent.com/taskoff/react.exam-pets.market/master/readme-img/login.jpg)
 
 ### Register Page
+![alt text](https://raw.githubusercontent.com/taskoff/react.exam-pets.market/master/readme-img/register.jpg)
 
 ## Private part
 #### have two parts: Market part and User part
