@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const config = require('./config/config')[env];
 const cors = require('cors');
 const secret = 'secret';
+require('dotenv').config()
 
 const app = require('express')();
 const cookieParser = require('cookie-parser');
@@ -11,7 +12,8 @@ const authRouter = require('./routes/auth');
 const playRouter = require('./routes/play');
 
 
-mongoose.connect('mongodb://localhost:27017/pets', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+// mongoose.connect('mongodb://localhost:27017/pets', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect(config.databaseUrl, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 require('./config/express')(app);
 app.use(cors({
