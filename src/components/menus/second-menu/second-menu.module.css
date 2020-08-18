@@ -1,5 +1,6 @@
 .second-menu {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
     margin-top: 20px;
 }
@@ -14,4 +15,16 @@
     min-height: 200px;
     justify-content: center;
     margin-top: 50px;
+}
+
+@media(max-width: 600px) {
+    .second-menu {
+        justify-content: center;
+    }
+
+    .home-menu,
+    .area-menu {
+        margin-top: 20px;
+        min-height: auto;
+    }
 }

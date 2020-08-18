@@ -20,3 +20,9 @@
 .price-input {
     width: 50px
 }
+
+@media(max-width: 600px) {
+    .form-input {
+        width: 100%;
+    }
+}

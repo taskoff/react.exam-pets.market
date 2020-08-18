@@ -26,3 +26,9 @@
     text-shadow: 0 0 2px black;
 }
 
+@media(max-width: 600px) {
+    .img-container {
+        display: block;
+    }
+}
+

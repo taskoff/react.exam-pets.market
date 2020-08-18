@@ -14,3 +14,12 @@
     height: 90px;
     padding: 20px 40px;
 }
+
+@media(max-width: 600px) {
+    .container {
+        display: block;
+        padding: 10px 0;
+        text-align: center;
+
+    }
+}

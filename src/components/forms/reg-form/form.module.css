@@ -41,3 +41,9 @@
 .hiden {
     display: none;
 }
+
+@media(max-width: 600px) {
+    .form-box {
+        max-width: 90%;
+    }
+}

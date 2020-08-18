@@ -6,3 +6,9 @@
     margin: auto;
     padding-top: 40px;
 }
+
+@media(max-width: 600px) {
+    .gallery {
+        display: block;
+    }
+}
